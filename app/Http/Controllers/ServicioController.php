@@ -52,7 +52,7 @@ class ServicioController extends Controller
      */
     public function show(Servicio $servicio)
     {
-        return view('servicios.show', compact('servicio'));
+        return view('servicio.show', compact('servicio'));
     }
 
     /**
@@ -60,7 +60,7 @@ class ServicioController extends Controller
      */
     public function edit(Servicio $servicio)
     {
-        return view('administrativo.create', compact('servicio'));
+        return view('servicio.create', compact('servicio'));
         
     }
 
