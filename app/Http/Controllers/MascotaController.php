@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ClienteMascota;
+use App\Models\HistorialClinico;
 use App\Models\Mascota;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,6 +61,12 @@ class MascotaController extends Controller
                 'id_cliente' => $duenho,
             ]);
         }
+
+        HistorialClinico::created([
+            'id_mascota' => $mascota->id,
+            'peso' => $request->peso ? $request->peso : 15.4,
+            'talla' => $request->talla ? $request->talla : "5",
+        ]);
 
         return redirect()->route('mascotas.index');
     }
