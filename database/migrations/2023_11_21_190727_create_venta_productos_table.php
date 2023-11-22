@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detalles_ventas', function (Blueprint $table) {
+        Schema::create('venta_productos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_recibo');
+            $table->unsignedBigInteger('id_venta');
             $table->unsignedBigInteger('id_producto')->nullable();
             $table->unsignedBigInteger('cantidad');
-            $table->unsignedBigInteger('precio_total');
-            $table->foreign('id_recibo')->references('id')->on('recibos');
+            $table->unsignedBigInteger('monto');
+            $table->foreign('id_venta')->references('id')->on('ventas');
             $table->foreign('id_producto')->references('id')->on('productos')->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('detalles_ventas');
+        Schema::dropIfExists('venta_productos');
     }
 };

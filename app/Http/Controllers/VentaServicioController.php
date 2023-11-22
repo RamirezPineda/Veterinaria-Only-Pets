@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SolicitudServicio;
+use App\Models\VentaServicio;
 use Illuminate\Http\Request;
 
-class SolicitudServicioController extends Controller
+class VentaServicioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class SolicitudServicioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SolicitudServicio $solicitudServicio)
+    public function show(VentaServicio $ventaServicio)
     {
         //
     }
@@ -42,7 +42,7 @@ class SolicitudServicioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SolicitudServicio $solicitudServicio)
+    public function edit(VentaServicio $ventaServicio)
     {
         //
     }
@@ -50,7 +50,7 @@ class SolicitudServicioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SolicitudServicio $solicitudServicio)
+    public function update(Request $request, VentaServicio $ventaServicio)
     {
         //
     }
@@ -58,7 +58,7 @@ class SolicitudServicioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SolicitudServicio $solicitudServicio)
+    public function destroy(VentaServicio $ventaServicio)
     {
         //
     }

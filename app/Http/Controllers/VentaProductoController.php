@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recibo;
+use App\Models\VentaProducto;
 use Illuminate\Http\Request;
 
-class ReciboController extends Controller
+class VentaProductoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class ReciboController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Recibo $recibo)
+    public function show(VentaProducto $ventaProducto)
     {
         //
     }
@@ -42,7 +42,7 @@ class ReciboController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Recibo $recibo)
+    public function edit(VentaProducto $ventaProducto)
     {
         //
     }
@@ -50,7 +50,7 @@ class ReciboController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Recibo $recibo)
+    public function update(Request $request, VentaProducto $ventaProducto)
     {
         //
     }
@@ -58,7 +58,7 @@ class ReciboController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Recibo $recibo)
+    public function destroy(VentaProducto $ventaProducto)
     {
         //
     }
