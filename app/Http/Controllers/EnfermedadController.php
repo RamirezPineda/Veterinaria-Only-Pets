@@ -10,9 +10,18 @@ class EnfermedadController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $enfermedades = Enfermedad::get();
+        $busqueda = $request->busqueda;
+        $enfermedades = Enfermedad::where('nombre', 'LIKE', '%' . $busqueda . '%')
+            ->orWhere('id', 'LIKE', '%' . $busqueda . '%')
+            ->paginate(7);
+        $data = [
+            'enfermedad' => $enfermedades,
+            'busqueda' => $busqueda,
+        ];
+        return view('enfermedades.index', compact('enfermedades'));
     }
 
     /**
@@ -28,15 +37,21 @@ class EnfermedadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Enfermedad::create([
+            'nombre' => $request->nombre,
+            'tipo' => $request->tipo
+        ]);
+
+        return redirect(route('enfermedades.index'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Enfermedad $enfermedad)
+    public function show($id)
     {
-        //
+        $enfermedad = Enfermedad::findOrFail($id);
+        return view('enfermedades.show', compact('enfermedad'));
     }
 
     /**
@@ -50,16 +65,32 @@ class EnfermedadController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Enfermedad $enfermedad)
+    public function update(Request $request, $id)
     {
-        //
+        $enfermedad = Enfermedad::findOrFail($id);
+        $data = ([
+            'nombre' => $request->nombre,
+            'tipo' => $request->tipo,
+        ]);
+        $enfermedad->update($data);
+
+        return redirect()->route('enfermedades.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Enfermedad $enfermedad)
+    public function destroy($id)
     {
-        //
+        $enfermedad = Enfermedad::findOrFail($id);
+        $enfermedad->delete();
+
+        return redirect()->route('enfermedades.index');
+    }
+    
+    public function datas($id)
+    {
+        $enfermedad = Enfermedad::find($id);
+        return $enfermedad;
     }
 }
