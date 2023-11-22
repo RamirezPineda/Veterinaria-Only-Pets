@@ -12,7 +12,8 @@ class VacunaController extends Controller
      */
     public function index()
     {
-        //
+        $vacunas = Vacuna::get();
+        return view('vacunas.index', compact('vacunas'));
     }
 
     /**
@@ -20,7 +21,7 @@ class VacunaController extends Controller
      */
     public function create()
     {
-        //
+        return view('vacunas.create');
     }
 
     /**
@@ -28,38 +29,26 @@ class VacunaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'nombre' => 'string|required|max:20|min:3'
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Vacuna $vacuna)
-    {
-        //
-    }
+        Vacuna::create([
+            'id'        => $request->id,
+            'nombre' => $request->nombre,
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Vacuna $vacuna)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Vacuna $vacuna)
-    {
-        //
+        return redirect()->route('vacunas.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Vacuna $vacuna)
+    public function destroy($id)
     {
-        //
+        $vacuna = Vacuna::findOrFail($id);
+        $vacuna->delete();
+
+        return redirect()->route('vacunas.index');
     }
 }
