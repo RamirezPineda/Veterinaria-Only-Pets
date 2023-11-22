@@ -10,9 +10,18 @@ class ServicioController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $busqueda = $request->busqueda;
+        $servicios = Servicio::where('nombre', 'LIKE', '%' . $busqueda . '%')
+            ->orWhere('precio', 'LIKE', '%' . $busqueda . '%')
+            ->orWhere('descripcion', 'LIKE', '%' . $busqueda . '%')
+            ->paginate(7);
+        $data = [
+            'servicio' => $servicios,
+            'busqueda' => $busqueda,
+        ];
+        return view('servicios.index', compact('servicios'));
     }
 
     /**
@@ -20,7 +29,8 @@ class ServicioController extends Controller
      */
     public function create()
     {
-        //
+        return view('servicio.create');
+        
     }
 
     /**
@@ -28,7 +38,13 @@ class ServicioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Servicio::create([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'precio' => $request->precio
+        ]);
+
+        return redirect(route('servicios.index'));
     }
 
     /**
@@ -36,7 +52,7 @@ class ServicioController extends Controller
      */
     public function show(Servicio $servicio)
     {
-        //
+        return view('servicios.show', compact('servicio'));
     }
 
     /**
@@ -44,22 +60,24 @@ class ServicioController extends Controller
      */
     public function edit(Servicio $servicio)
     {
-        //
+        return view('administrativo.create', compact('servicio'));
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Servicio $servicio)
+    public function update(Request $request, $id)
     {
-        //
+        $servicio = Servicio::findOrFail($id);
+        $data = ([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'precio' => $request->precio,
+        ]);
+        $servicio->update($data);
+
+        return redirect()->route('servicios.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Servicio $servicio)
-    {
-        //
-    }
 }
