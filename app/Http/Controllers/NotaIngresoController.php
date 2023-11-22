@@ -10,56 +10,29 @@ class NotaIngresoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $busqueda = $request->busqueda;
+        $compras = NotaIngreso::where('id', 'LIKE', '%' . $busqueda . '%')
+            ->orWhere('cantidad', 'LIKE', '%' . $busqueda . '%')
+            ->orWhere('monto_total', 'LIKE', '%' . $busqueda . '%')
+            ->orWhere('fecha', 'LIKE', '%' . $busqueda . '%')
+            ->paginate(7);
+        $data = [
+            'servicio' => $compras,
+            'busqueda' => $busqueda,
+        ];
+        return view('compras.index', compact('compras'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
      */
-    public function show(NotaIngreso $notaIngreso)
+    public function show($id)
     {
-        //
+        $compras = NotaIngreso::findOrFail($id);
+        return view('compras.show', compact('compras'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(NotaIngreso $notaIngreso)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, NotaIngreso $notaIngreso)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(NotaIngreso $notaIngreso)
-    {
-        //
-    }
 }
