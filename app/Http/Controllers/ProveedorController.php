@@ -10,17 +10,19 @@ class ProveedorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $busqueda = $request->busqueda;
+        $proveedores = Proveedor::where('nombre', 'LIKE', '%' . $busqueda . '%')
+            ->orWhere('email', 'LIKE', '%' . $busqueda . '%')
+            ->orWhere('NIT', 'LIKE', '%' . $busqueda . '%')
+            ->orWhere('telefono', 'LIKE', '%' . $busqueda . '%')
+            ->paginate(7);
+        $data = [
+            'servicio' => $proveedores,
+            'busqueda' => $busqueda,
+        ];
+        return view('proveedores.index', compact('proveedores'));
     }
 
     /**
@@ -28,38 +30,54 @@ class ProveedorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Proveedor::create([
+            'nombre' => $request->nombre,
+            'direccion' => $request->direccion,
+            'telefono' => $request->telefono,
+            'email' => $request->email,
+            'NIT' => $request->NIT,
+        ]);
+        return redirect(route('proveedores.index'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Proveedor $proveedor)
+    public function show(Proveedor $proveedore)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Proveedor $proveedor)
-    {
-        //
+        return view('proveedores.show', compact('proveedore'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Proveedor $proveedor)
+    public function update(Request $request, $id)
     {
-        //
+        $proveedor = Proveedor::find($id);
+        $data = [
+            'nombre' => $request->nombre,
+            'direccion' => $request->direccion,
+            'telefono' => $request->telefono,
+            'email' => $request->email,
+            'NIT' => $request->NIT,
+        ];
+        $proveedor->update($data);
+        return redirect(route('proveedores.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Proveedor $proveedor)
+    public function destroy($id)
     {
-        //
+        $proveedor = Proveedor::findOrFail($id);
+        $proveedor->delete();
+
+        return redirect()->route('proveedores.index');
+    }
+
+    public function datas($id){
+        $proveedor = Proveedor::find($id);
+        return $proveedor;
     }
 }
