@@ -10,17 +10,19 @@ class ProductoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $busqueda = $request->busqueda;
+        $productos = Producto::where('nombre', 'LIKE', '%' . $busqueda . '%')
+            ->orWhere('precio', 'LIKE', '%' . $busqueda . '%')
+            ->orWhere('marca', 'LIKE', '%' . $busqueda . '%')
+            ->orWhere('costo', 'LIKE', '%' . $busqueda . '%')
+            ->paginate(7);
+        $data = [
+            'servicio' => $productos,
+            'busqueda' => $busqueda,
+        ];
+        return view('productos.index', compact('productos'));
     }
 
     /**
@@ -28,7 +30,16 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Producto::create([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'costo' => $request->costo,
+            'precio' => $request->precio,
+            'marca' => $request->marca,
+            'cantidad' => 0,
+            'foto' => $request->foto,
+        ]);
+        return redirect(route('productos.index'));
     }
 
     /**
@@ -36,30 +47,26 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Producto $producto)
-    {
-        //
+        return view('productos.show', compact('producto'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, $id)
     {
-        //
+        $producto = producto::find($id);
+        $data = [
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'marca' => $request->marca,
+            'costo' => $request->costo,
+            'precio' => $request->precio,
+            'id_categoria' => $request->id_categoria,
+            'foto' => $request->foto,
+        ];
+        $producto->update($data);
+        return redirect(route('productos.index'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Producto $producto)
-    {
-        //
-    }
 }
