@@ -10,17 +10,16 @@ class CategoriaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $busqueda = $request->busqueda;
+        $categorias = Categoria::where('nombre', 'LIKE', '%' . $busqueda . '%')
+            ->paginate(7);
+        $data = [
+            'servicio' => $categorias,
+            'busqueda' => $busqueda,
+        ];
+        return view('categorias.index', compact('categorias'));
     }
 
     /**
@@ -28,7 +27,10 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Categoria::create([
+            'nombre' => $request->nombre,
+        ]);
+        return redirect(route('categorias.index'));
     }
 
     /**
@@ -36,30 +38,24 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Categoria $categoria)
-    {
-        //
+        return view('categorias.show', compact('categorias'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, $id)
     {
-        //
+        $categorias = Categoria::find($id);
+        $data = [
+            'nombre' => $request->nombre,
+        ];
+        $categorias->update($data);
+        return redirect(route('categorias.index'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Categoria $categoria)
-    {
-        //
+    public function datas($id){
+        $categorias = Categoria::find($id);
+        return $categorias;
     }
 }
