@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DetalleHistoria;
+use App\Models\DetalleHistorial;
 use Illuminate\Http\Request;
 
-class DetalleHistoriaController extends Controller
+class DetalleHistorialController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class DetalleHistoriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(DetalleHistoria $detalleHistoria)
+    public function show(DetalleHistorial $detalleHistoria)
     {
         //
     }
@@ -42,7 +42,7 @@ class DetalleHistoriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(DetalleHistoria $detalleHistoria)
+    public function edit(DetalleHistorial $detalleHistoria)
     {
         //
     }
@@ -50,7 +50,7 @@ class DetalleHistoriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DetalleHistoria $detalleHistoria)
+    public function update(Request $request, DetalleHistorial $detalleHistoria)
     {
         //
     }
@@ -58,7 +58,7 @@ class DetalleHistoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DetalleHistoria $detalleHistoria)
+    public function destroy(DetalleHistorial $detalleHistoria)
     {
         //
     }
