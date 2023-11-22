@@ -12,7 +12,8 @@ class HistorialClinicoController extends Controller
      */
     public function index()
     {
-        //
+        $historiales = HistorialClinico::get();
+        return view('historiales.index', compact('historiales'));
     }
 
     /**
@@ -20,7 +21,7 @@ class HistorialClinicoController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -34,9 +35,9 @@ class HistorialClinicoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(HistorialClinico $historialClinico)
+    public function show(HistorialClinico $historiale)
     {
-        //
+        return view('historiales.show', compact('historiale'));
     }
 
     /**
