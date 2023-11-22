@@ -12,15 +12,8 @@ class CirugiaController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $cirugias = Cirugia::get();
+        return view('cirugias.index', compact('cirugias'));
     }
 
     /**
@@ -28,38 +21,43 @@ class CirugiaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        Cirugia::create([
+            'nombre' => $request->nombre,
+            'tipo' => $request->tipo
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Cirugia $cirugia)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Cirugia $cirugia)
-    {
-        //
+        return redirect(route('cirugias.index'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cirugia $cirugia)
+    public function update(Request $request, $id)
     {
-        //
+        $cirugia = Cirugia::findOrFail($id);
+        $data = ([
+            'nombre' => $request->nombre,
+            'tipo' => $request->tipo,
+        ]);
+        $cirugia->update($data);
+
+        return redirect()->route('cirugias.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cirugia $cirugia)
+    public function destroy($id)
     {
-        //
+        $cirugia = Cirugia::findOrFail($id);
+        $cirugia->delete();
+
+        return redirect()->route('cirugias.index');
+    }
+
+    public function datas($id)
+    {
+        $cirugia = Cirugia::find($id);
+        return $cirugia;
     }
 }
