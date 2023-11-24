@@ -81,7 +81,7 @@ class MascotaController extends Controller
         //         return redirect()->back();
         // }
 
-        return view('mascota.show', compact('mascota'));
+        return view('mascotas.show', compact('mascota'));
         
     }
 
@@ -90,7 +90,7 @@ class MascotaController extends Controller
      */
     public function edit(Mascota $mascota)
     {
-        return view('mascota.show', compact('mascota'));
+        return view('mascotas.show', compact('mascota'));
         
     }
 

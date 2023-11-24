@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
+use App\Models\Persona;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
@@ -10,9 +12,18 @@ class UsuarioController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $busqueda = $request->busqueda;
+        $usuarios = Usuario::where('nombre_usuario', 'LIKE', '%' . $busqueda . '%')
+            ->orWhere('enable', 'LIKE', '%' . $busqueda . '%')
+            ->latest('id')
+            ->paginate(10);
+        $data = [
+            'usuario' => $usuarios,
+            'busqueda' => $busqueda,
+        ];
+        return view('usuarios.index', compact('usuarios'));
     }
 
     /**
@@ -20,7 +31,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('register');
     }
 
     /**
@@ -28,7 +39,21 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $persona = Persona::create([
+            'nombre'           => $request->nombre,
+            'apellido_paterno' => $request->apellido_paterno,
+            'apellido_materno' => $request->apellido_materno,
+            'email'            => $request->email,
+        ]);
+        Cliente::create(['id' => $persona->id]);
+        $usuario = Usuario::create([
+            'nombre_usuario' => $request->nombre_usuario,
+            'password'       => bcrypt($request->password),
+            'enable'         => '1',
+            'id_persona'     => $persona->id,
+        ]);
+
+        return view('auth.login');
     }
 
     /**
@@ -36,30 +61,6 @@ class UsuarioController extends Controller
      */
     public function show(Usuario $usuario)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Usuario $usuario)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Usuario $usuario)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Usuario $usuario)
-    {
-        //
+        return view('usuarios.show', compact('usuario'));
     }
 }

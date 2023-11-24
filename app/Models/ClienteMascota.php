@@ -8,10 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ClienteMascota extends Model
 {
     use HasFactory;
+    public $incrementing = false;
+    
     protected $table = 'clientes_mascotas';
-    protected $fillable  = [ 
-        'id_cliente', 
-        'id_mascota', 
-        
-    ];
+
+    protected $fillable  = [ 'id_cliente', 'id_mascota'];
 }
