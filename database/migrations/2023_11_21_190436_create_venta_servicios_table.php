@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('venta_servicios', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_cliente')->nullable();
             $table->unsignedBigInteger('id_servicio')->nullable();
             $table->unsignedBigInteger('id_venta');
             $table->unsignedBigInteger('id_mascota');
             $table->foreign('id_servicio')->references('id')->on('servicios')->nullOnDelete();
-            $table->foreign('id_cliente')->references('id')->on('clientes')->nullOnDelete();
             $table->foreign('id_venta')->references('id')->on('ventas');
             $table->timestamps();
         });

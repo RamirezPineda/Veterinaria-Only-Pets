@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('detalles_historial', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_mascota');
-            $table->unsignedFloat('peso', 5, 3);
-            $table->string('talla');
-            $table->foreign('id_mascota')->references('id')->on('mascotas')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('descripcion');
+            $table->date('fecha_consulta');
+            $table->date('fecha_prox_consulta')->nullable();
+            $table->unsignedBigInteger('id_historial');
+            $table->foreign('id_historial')->references('id')->on('historiales_clinicos')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
