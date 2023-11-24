@@ -34,7 +34,6 @@ class VacunaController extends Controller
         ]);
 
         Vacuna::create([
-            'id'        => $request->id,
             'nombre' => $request->nombre,
         ]);
 

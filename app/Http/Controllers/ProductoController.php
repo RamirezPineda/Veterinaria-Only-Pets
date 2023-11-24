@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NotaIngreso;
 use App\Models\Producto;
+use App\Models\Venta;
+use App\Models\VentaProducto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductoController extends Controller
 {
@@ -66,6 +70,58 @@ class ProductoController extends Controller
             'foto' => $request->foto,
         ];
         $producto->update($data);
+        return redirect(route('productos.index'));
+    }
+
+    public function comprar(Request $request) 
+    {
+        $fin = strpos($request->id_producto, ',');
+        $id_producto = substr($request->id_producto, 0, $fin);
+        NotaIngreso::create([
+            'id_proveedor' => $request->id_proveedor,
+            'id_administrativo' => @Auth::user()->id,
+            'id_producto' => $id_producto,
+            'monto_total' => $request->monto_total,
+            'fecha' => date('Y-m-d'),
+            'hora' => date('H:i:s'),
+            'cantidad' => $request->cantidad
+        ]);
+        //Actualizando el stock del producto
+        $producto = Producto::find($id_producto);
+        $producto->cantidad = $producto->cantidad + $request->cantidad;
+        $producto->save();
+
+        return redirect(route('productos.index'));
+    }
+
+    public function vender(Request $request) 
+    {
+        $fin = strpos($request->id_producto, ',');
+        $id_producto = substr($request->id_producto, 0, $fin);
+        $producto =  Producto::find($id_producto);
+        $stock = $producto->cantidad - $request->cantidad;
+        if ($stock < 0) {
+            return redirect()->route('productos.index')
+            ->withErrors('Error', 'Stock insuficiente del producto');
+        }
+        //Actualizacion del stock del producto
+        $producto->cantidad = $stock;
+        $producto->save();
+
+        //@Auth::user()->id es el id del administrativo
+        $venta = Venta::create([
+            'fecha' => date('Y-m-d'),
+            'id_administrativo' => @Auth::user()->id,
+            'id_cliente' => '1',
+            'total' => $request->total,
+            'concepto' => $request->concepto,
+        ]);
+        VentaProducto::create([
+            'id_venta' => $venta->id,
+            'monto' => $request->total,
+            'cantidad' => $request->cantidad,
+            'id_producto' => $id_producto,
+        ]);
         return redirect(route('productos.index'));
     }
 
