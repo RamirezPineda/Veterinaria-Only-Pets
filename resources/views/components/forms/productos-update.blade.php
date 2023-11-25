@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid bd-example-row">
-                    <form class="row g-3" id="formProductosUpdate" action="{{ route('productos.update') }} method="POST">
+                    <form class="row g-3" id="formProductosUpdate" action="" method="POST">
                         @method('PUT')
                         @csrf              
                         <div class="row mt-2">

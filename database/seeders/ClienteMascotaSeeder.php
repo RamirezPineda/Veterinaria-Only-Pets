@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\clienteMascota;
+use App\Models\ClienteMascota;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,31 +15,31 @@ class ClienteMascotaSeeder extends Seeder
      */
     public function run()
     {
-        clienteMascota::create([
+        ClienteMascota::create([
             'id_cliente' => '8', 
             'id_mascota' => '1', 
         ]);
-        clienteMascota::create([
+        ClienteMascota::create([
             'id_cliente' => '8', 
             'id_mascota' => '2', 
         ]);
-        clienteMascota::create([
+        ClienteMascota::create([
             'id_cliente' => '9', 
             'id_mascota' => '3', 
         ]);
-        clienteMascota::create([
+        ClienteMascota::create([
             'id_cliente' => '10', 
             'id_mascota' => '4', 
         ]);
-        clienteMascota::create([
+        ClienteMascota::create([
             'id_cliente' => '11', 
             'id_mascota' => '5', 
         ]);
-        clienteMascota::create([
+        ClienteMascota::create([
             'id_cliente' => '11', 
             'id_mascota' => '6', 
         ]);
-        clienteMascota::create([
+        ClienteMascota::create([
             'id_cliente' => '12', 
             'id_mascota' => '7', 
         ]);

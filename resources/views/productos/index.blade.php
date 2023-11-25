@@ -21,14 +21,14 @@
 
 
         <div class="d-md-flex justify-content-md-between" style="margin-bottom: 1rem;">
-            @can('productos.create')
+            {{-- @can('productos.create') --}}
                 <div class="registrar">
                     <button href="#" class="buttonRegistrame" data-bs-toggle="modal" data-bs-target="#productosFormInput"
                         onclick="createSelector('Input')">
                         Registrar <br> Producto
                     </button>
                 </div>
-            @endcan
+            {{-- @endcan --}}
             <form action="{{ route('productos.index') }}" method="GET">
                 <div class="btn-group">
                     <input type=" text" name="busqueda" class="form-control">
@@ -52,20 +52,20 @@
                     @foreach ($productos as $producto)
                         <tr>
                             <td>{{ $producto->id }}</td>
-                            <td>{{ $producto->nombre }}</td>
+                            <td> {{ $producto->nombre }}</td>
                             <td>{{ $producto->descripcion }}</td>
                             <td>{{ $producto->precio}}</td>
                             <td>{{ $producto->cantidad}}</td>
                             <td>
                               <div class="d-flex flex-row justify-content-between">
-                                @can('productos.edit')
+                                {{-- @can('productos.edit') --}}
                                 <button class="button-edit" onclick=@php  echo "\"desplegarForm(" . json_encode($producto->id) . ")\""; @endphp data-bs-toggle="modal"
                                     data-bs-target="#productosFormUpdate">
                                     <span class="material-icons-sharp">
                                         edit
                                     </span>
                                 </button>
-                                @endcan
+                                {{-- @endcan --}}
                                 <a href="{{ route('productos.show', $producto)}}" class="button-edit" id="ver">
                                     <span class="material-icons-sharp">
                                       visibility
@@ -85,18 +85,18 @@
 @endsection
 
 @section('body-final')
-    @can('productos.create')
+    {{-- @can('productos.create') --}}
     <x-forms.productos-input id="productosFormInput" />
-    @endcan
+    {{-- @endcan --}}
     {{-- @can('productos.create')
     <x-forms.compras-input id="comprasFormInput" />
     @endcan --}}
-    @can('productos.create')
+    {{-- @can('productos.create') --}}
     <x-forms.ventas-input id="ventasFormInput" />
-    @endcan
-    @can('productos.edit')
+    {{-- @endcan --}}
+    {{-- @can('productos.edit') --}}
     <x-forms.productos-update id="productosFormUpdate" />
-    @endcan
+    {{-- @endcan --}}
 @endsection
 
 @section('js-home')

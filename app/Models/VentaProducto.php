@@ -15,4 +15,15 @@ class VentaProducto extends Model
         'cantidad', 
         'monto', 
     ];
+
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class, 'id_producto');
+    }
+
+    public function venta() 
+    {
+        return $this->belongsTo(Venta::class, 'id_venta');
+    }
+
 }

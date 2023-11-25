@@ -4,6 +4,7 @@ use App\Http\Controllers\AdministrativoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CirugiaController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\DetalleHistorialController;
 use App\Http\Controllers\EnfermedadController;
 use App\Http\Controllers\HistorialClinicoController;
 use App\Http\Controllers\HomeController;
@@ -89,6 +90,9 @@ Route::resource('enfermedades', EnfermedadController::class);
 
 Route::get('historiales/datas/{id}', [HistorialClinicoController::class, 'datas']);
 Route::resource('historiales', HistorialClinicoController::class);
+Route::get('historiales/pdf/{id}', [HistorialClinicoController::class,'pdf'])->name('historiales.pdf');
+
+Route::resource('diagnosticos', DetalleHistorialController::class);
 
 // PAQUETE SERVICIOS
 
@@ -97,6 +101,7 @@ Route::resource('servicios', ServicioController::class);
 
 Route::get('ventas-servicios/datas/{id}', [VentaServicioController::class, 'datas']);
 Route::resource('ventas-servicios', VentaServicioController::class);
+Route::get('ventas-servicios/pdf/{id}', [VentaServicioController::class,'pdf'])->name('ventas-servicios.pdf');
 
 
 // PAQUETE PETSHOP
@@ -108,7 +113,7 @@ Route::get('proveedores/datas/{id}', [ProveedorController::class, 'datas']);
 Route::resource('proveedores', ProveedorController::class);
 
 Route::get('productos/datas/{id}', [ProductoController::class, 'datas']);
-// Route::post('productos/comprar', [ProductoController::class, 'comprar'])->name('productos.comprar');
+Route::post('productos/comprar', [ProductoController::class, 'comprar'])->name('productos.comprar');
 Route::post('productos/vender', [ProductoController::class, 'vender'])->name('productos.vender');
 Route::resource('productos', ProductoController::class);
 
@@ -116,6 +121,8 @@ Route::get('compras/datas/{id}', [NotaIngresoController::class, 'datas']);
 Route::resource('compras', NotaIngresoController::class);
 
 Route::resource('ventas', VentaProductoController::class);
+Route::get('ventas/pdf/{id}', [VentaProductoController::class,'pdf'])->name('ventas.pdf');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

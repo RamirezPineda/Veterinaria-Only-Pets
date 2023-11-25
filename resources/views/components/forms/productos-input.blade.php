@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid bd-example-row">
-                    <form class="row g-3" id="formProductosInput" action="{{ route('productos.store') }}"
+                    <form enctype="multipart/form-data" class="row g-3" id="formProductosInput" action="{{ route('productos.store') }}"
                         method="post">
                         @csrf
                         <div class="row mt-2">
@@ -57,7 +57,7 @@
 
                             <div class="col-md-6">
                                 <label for="foto" class="form-label fs-5">Foto</label>
-                                <input type="text" class="form-control" id="foto" name="foto">
+                                <input type="file" class="form-control" id="foto" name="foto">
                                 {!! $errors->first('foto', '<span class="help-block text-danger">*:message</span>') !!}
                             </div>
 

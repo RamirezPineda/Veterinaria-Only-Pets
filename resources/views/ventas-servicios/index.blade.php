@@ -38,10 +38,10 @@
             <thead class="thead">
                 <tr>
                     <th>Id</th>
-                    <th>Nombre de cliente</th>
+                    {{-- <th>Nombre de cliente</th> --}}
                     <th>Nombre de mascota</th>
                     <th>Nombre de servicio</th>
-                    <th>Id de venta</th>
+                    <th>Concepto de venta</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -49,10 +49,10 @@
                 @foreach ($solicitudes as $solicitud)
                 <tr>
                     <td>{{ $solicitud->id }}</td>
-                    <td>{{ $solicitud->cliente->persona->nombre }}
+                    {{-- <td>{{ $solicitud->cliente->persona->nombre }}
                         {{ $solicitud->cliente->persona->apellido_paterno }}
                         {{ $solicitud->cliente->persona->apellido_materno }}
-                    </td>
+                    </td> --}}
                     <td>{{ $solicitud->mascota->nombre }}</td>
                     <td>
                         @if ($solicitud->id_servicio)
@@ -61,7 +61,7 @@
                         ninguno
                         @endif
                     </td>
-                    <td>{{ $solicitud->id_venta }}</td>
+                    <td>{{ $solicitud->venta->concepto }}</td>
                     <td>
                         <a href="{{ route('ventas-servicios.show', $solicitud) }}" class="button-edit" id="ver">
                             <span class="material-icons-sharp">

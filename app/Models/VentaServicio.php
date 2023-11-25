@@ -16,7 +16,6 @@ class VentaServicio extends Model
         'id_mascota',
     ];
 
-
     public function servicio()
     {
         return $this->belongsTo(Servicio::class, 'id_servicio');

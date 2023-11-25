@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\VentaProducto;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class VentaProductoController extends Controller
 {
@@ -21,30 +22,17 @@ class VentaProductoController extends Controller
             'venta' => $ventas,
             'busqueda' => $busqueda,
         ];
+        $ventas->load('producto');
+        
         return view('ventas.index', compact('ventas'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(VentaProducto $ventaProducto)
+    public function pdf($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, VentaProducto $ventaProducto)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(VentaProducto $ventaProducto)
-    {
-        //
+        $venta = VentaProducto::findOrFail($id);
+        $venta->load('producto');
+        $venta->load('venta');
+        $pdf = PDF::loadView('ventas.pdf', ['venta' => $venta]);
+        return $pdf->download('ventas.pdf');
     }
 }

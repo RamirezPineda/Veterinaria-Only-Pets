@@ -16,8 +16,7 @@ class VentaServicioController extends Controller
     public function index(Request $request)
     {
         $busqueda = $request->busqueda;
-        $solicitudes = VentaServicio::where('id_cliente', 'LIKE', '%' . $busqueda . '%')
-            ->orWhere('id_servicio', 'LIKE', '%' . $busqueda . '%')
+        $solicitudes = VentaServicio::where('id_servicio', 'LIKE', '%' . $busqueda . '%')
             ->orWhere('id_venta', 'LIKE', '%' . $busqueda . '%')
             ->latest('id')
             ->paginate(7);
@@ -25,7 +24,7 @@ class VentaServicioController extends Controller
             'solicitudes' => $solicitudes,
             'busqueda' => $busqueda,
         ];
-        $solicitudes->load('cliente');
+        // $solicitudes->load('cliente');
         $solicitudes->load('servicio');
         $solicitudes->load('venta');
         $solicitudes->load('mascota');
@@ -49,7 +48,6 @@ class VentaServicioController extends Controller
         ]);
         if (is_null($request->servicios)) {
             VentaServicio::create([
-                'id_cliente' => $request->id_cliente,
                 'id_servicio' => null,
                 'id_venta' => $venta->id,
                 'id_mascota' => $request->id_mascota,
@@ -57,7 +55,6 @@ class VentaServicioController extends Controller
         } else {
             foreach ($request->servicios as $servicio) {
                 VentaServicio::create([
-                    'id_cliente' => $request->id_cliente,
                     'id_servicio' => $servicio,
                     'id_venta' => $venta->id,
                     'id_mascota' => $request->id_mascota,
@@ -68,13 +65,5 @@ class VentaServicioController extends Controller
         return redirect(route('ventas-servicios.index'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show($id)
-    {
-        $solicitud = VentaServicio::findOrFail($id);
-        return view('ventas-servicios.show', compact('solicitud'));
-    }
 
 }

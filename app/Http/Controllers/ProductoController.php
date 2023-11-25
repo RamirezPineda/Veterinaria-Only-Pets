@@ -34,14 +34,16 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        $foto_url = cloudinary()->upload($request->file('foto')->getRealPath())->getSecurePath();
         Producto::create([
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
             'costo' => $request->costo,
             'precio' => $request->precio,
             'marca' => $request->marca,
-            'cantidad' => 0,
-            'foto' => $request->foto,
+            'cantidad' => 0,    
+            'id_categoria' => $request->id_categoria,
+            'foto' => $foto_url,
         ]);
         return redirect(route('productos.index'));
     }
@@ -73,6 +75,12 @@ class ProductoController extends Controller
         return redirect(route('productos.index'));
     }
 
+    public function datas($id)
+    {
+        $producto = Producto::find($id);
+        return $producto;
+    }
+
     public function comprar(Request $request) 
     {
         $fin = strpos($request->id_producto, ',');
@@ -91,7 +99,7 @@ class ProductoController extends Controller
         $producto->cantidad = $producto->cantidad + $request->cantidad;
         $producto->save();
 
-        return redirect(route('productos.index'));
+        return redirect(route('compras.index'));
     }
 
     public function vender(Request $request) 
@@ -111,8 +119,8 @@ class ProductoController extends Controller
         //@Auth::user()->id es el id del administrativo
         $venta = Venta::create([
             'fecha' => date('Y-m-d'),
-            'id_administrativo' => @Auth::user()->id,
-            'id_cliente' => '1',
+            'id_administrativo' => '1',
+            'id_cliente' => $request->id_cliente,
             'total' => $request->total,
             'concepto' => $request->concepto,
         ]);
@@ -122,7 +130,7 @@ class ProductoController extends Controller
             'cantidad' => $request->cantidad,
             'id_producto' => $id_producto,
         ]);
-        return redirect(route('productos.index'));
+        return redirect(route('ventas.index'));
     }
 
 }

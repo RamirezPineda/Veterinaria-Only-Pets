@@ -1,9 +1,9 @@
 @extends('home')
 @section('title', 'historial-clinico')
-@php
+{{-- @php
 $active = Auth::user()->hasRole('cliente') ? 'mis-mascotas' : 'historial-clinico';
-@endphp
-@section($active, 'active')
+@endphp --}}
+@section('historial-clinico', 'active')
 
 @section('css-derecha')
     <link rel="stylesheet" href="{{ asset('css/table-information.css') }}">
