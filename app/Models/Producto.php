@@ -20,6 +20,7 @@ class Producto extends Model
         'cantidad',
         'id_categoria',
         'id_proveedor',
+        'foto',
     ];
 
     public function categoria()

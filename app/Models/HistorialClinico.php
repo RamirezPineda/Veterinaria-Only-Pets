@@ -33,6 +33,6 @@ class HistorialClinico extends Model
     }
 
     public function enfermedad() {
-        return $this->belongsToMany(Enfermedad::class, 'detalle_enfermedades', 'id_historial', 'id_enfermedad')->withPivot('fecha_deteccion', 'inicio_tratamiento', 'fin_tratamiento');
+        return $this->belongsToMany(Enfermedad::class, 'detalles_enfermedades', 'id_historial', 'id_enfermedad')->withPivot('fecha_deteccion', 'inicio_tratamiento', 'fin_tratamiento');
     }
 }

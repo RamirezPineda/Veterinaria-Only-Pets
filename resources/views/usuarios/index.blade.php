@@ -36,7 +36,7 @@
                     <tr>
                         <td>{{ $usuario->id }}</td>
                         <td>{{ $usuario->nombre_usuario }}</td>
-                        <td>{{ $usuario->enable }}</td>
+                        <td>{{ $usuario->enable ? "Activo" : "Desactivado" }}</td>
                         <td>
                           <div class="d-flex justify-content-center">
                               <a href="{{ route('usuarios.show', $usuario) }}" class="button-edit" id="ver">

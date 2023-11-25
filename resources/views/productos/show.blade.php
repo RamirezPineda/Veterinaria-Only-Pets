@@ -19,6 +19,13 @@
                 <strong>Cantidad</strong>: {{$producto->cantidad}} <br>
                 <strong>Categoria</strong>: {{$producto->categoria->nombre}} <br>
                 <strong>Descripcion</strong>: {{$producto->descripcion}} <br>
+                <strong>Foto: </strong>
+                @if ($producto->foto != null)
+                <picture>
+                    {{-- <source srcset="..." type="image/svg+xml"> --}}
+                    <img class="img-fluid img-thumbnail" src="{{$producto->foto}}" alt="{{$producto->nombre}}">
+                  </picture>
+                @endif
             </p>
             <hr>
             <div class="col">

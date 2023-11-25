@@ -56,14 +56,14 @@
                     <td>{{ $proveedor->NIT}}</td>
                     <td>
                         <div class="d-flex flex-row justify-content-between">
-                            @can('proveedores.edit')
+                            {{-- @can('proveedores.edit') --}}
                             <button class="button-edit" onclick=@php echo "\" desplegarForm(" . json_encode($proveedor->id) . ")\""; @endphp data-bs-toggle="modal"
                                 data-bs-target="#proveedoresFormUpdate">
                                 <span class="material-icons-sharp">
                                     edit
                                 </span>
                             </button>
-                            @endcan
+                            {{-- @endcan --}}
                         </div>
                     </td>
                     <td>
@@ -98,12 +98,12 @@
 @endsection
 
 @section('body-final')
-@can('proveedores.create')
+{{-- @can('proveedores.create') --}}
 <x-forms.proveedores-input id="proveedoresFormInput" />
-@endcan
-@can('proveedores.edit')
+{{-- @endcan --}}
+{{-- @can('proveedores.edit') --}}
 <x-forms.proveedores-update id="proveedoresFormUpdate" />
-@endcan
+{{-- @endcan --}}
 @endsection
 
 @section('js-home')

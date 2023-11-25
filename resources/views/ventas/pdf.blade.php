@@ -11,8 +11,8 @@
 
 <body>
     <div class="tabla" style="padding: 3rem;">
-        <h1>Recibo</h1>
-        <strong>ID recibo: {{ $venta->recibo->id }}</strong>
+        <h1>Venta de Producto</h1>
+        <strong>ID Venta: {{ $venta->venta->id }}</strong>
         <p>
             <strong>Producto :</strong>: @if ($venta->producto->nombre)
             {{ $venta->producto->nombre }}
@@ -21,7 +21,7 @@
             @endif
             <br>
             <strong>Cantidad :</strong>: {{$venta->cantidad}} <br>
-            <strong>Precio Total :</strong>: {{$venta->precio_total}} <br>
+            <strong>Monto Total :</strong>: {{$venta->monto}} <br>
         </p>
     </div>
 </body>

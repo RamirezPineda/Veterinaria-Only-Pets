@@ -36,13 +36,6 @@
                 ---
                 @endif <br>
 
-                <strong>Telefonos</strong>:
-                @forelse($telefonos as $telefono)
-                <span class="">{{$telefono->numero}} &nbsp;</span>
-                @empty
-                No tiene telefonos registrados
-                @endforelse <br>
-
                 <strong>Fecha de nacimiento</strong>: @if($usuario->persona->fecha_de_nacimiento)
                 {{$usuario->persona->fecha_de_nacimiento}}
                 @else
@@ -51,12 +44,12 @@
             </p>
             <hr>
             <p>
-                <strong >Rol</strong>:
+                {{-- <strong >Rol</strong>:
                 @forelse($usuario->roles as $rol)
                 <span style="text-transform: capitalize;">{{$rol->name}} </span>
                 @empty
                 No tiene roles registrados
-                @endforelse <br>
+                @endforelse <br> --}}
             </p>
             <hr>
             
