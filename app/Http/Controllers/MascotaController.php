@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use App\Models\ClienteMascota;
 use App\Models\HistorialClinico;
 use App\Models\Mascota;
@@ -139,7 +140,13 @@ class MascotaController extends Controller
     }
 
     public function myPets(){
-        $mascotas = Auth::user()->persona->mascotas;
+        // $mascotas = Auth::user()->persona->mascotas;
+        $cliente = Cliente::find(Auth::user()->id);
+
+        // Obtén todas las mascotas del cliente
+        $mascotas = $cliente->mascotas;
+        
+        // dd($mascotas);
         return view('mascotas.myPets', compact('mascotas'));
     }
 }

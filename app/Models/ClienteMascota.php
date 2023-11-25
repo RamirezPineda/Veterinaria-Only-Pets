@@ -13,4 +13,9 @@ class ClienteMascota extends Model
     protected $table = 'clientes_mascotas';
 
     protected $fillable  = [ 'id_cliente', 'id_mascota'];
+
+    public function mascota()
+    {
+        return $this->belongsTo(Mascota::class,'id_mascota');
+    }
 }

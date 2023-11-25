@@ -25,7 +25,7 @@
 
 <div class="row d-flex align-items-stretch pt-5  ">
     <div class="col">
-        {{-- @can('proveedores.index') --}}
+        @can('proveedores.index')
         <div class="card">
             <img src="{{ asset('images/petshop/proveedores.jpg') }}" class="card-img-top" alt="...">
             <div class="card-body">
@@ -33,18 +33,18 @@
                 <a href="{{ route('proveedores.index') }}">
                     <button type="button" class="btn btn-primary mb-3">Ver lista</button>
                 </a>
-                {{-- @can('proveedores.create') --}}
+                @can('proveedores.create')
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#proveedoresFormInput" onclick="createSelector('Input')">
                     Registrar Proveedor
                 </button>
-                {{-- @endcan --}}
+                @endcan
             </div>
         </div>
-        {{-- @endcan --}}
+        @endcan
     </div>
 
     <div class="col">
-        {{-- @can('productos.index') --}}
+        @can('productos.index')
         <div class="card">
             <img src="{{ asset('images/petshop/productos.jpg') }}" class="card-img-top" alt="...">
             <div class="card-body">
@@ -53,16 +53,16 @@
                     <button type="button" class="btn btn-primary mb-3">Ver lista
                     </button>
                 </a>
-                {{-- @can('productos.create') --}}
+                @can('productos.create')
                 <div class="registrar">
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#productosFormInput" onclick="createSelector('Input')">
                         Registrar Producto
                     </button>
                 </div>
-                {{-- @endcan --}}
+                @endcan
             </div>
         </div>
-        {{-- @endcan --}}
+        @endcan
     </div>
 
 
@@ -75,13 +75,13 @@
                     <button type="button" class="btn btn-primary mb-3">Ver lista
                     </button>
                 </a>
-                {{-- @can('proveedores.create') --}}
+                @can('proveedores.create')
                 <div class="registrar">
                     <button type="button" class="btn btn-success" class="buttonRegistrame" data-bs-toggle="modal" data-bs-target="#categoriaFormInput" onclick="createSelector('Input')">
                         Registrar categoria
                     </button>
                 </div>
-                {{-- @endcan --}}
+                @endcan
             </div>
         </div>
 
@@ -96,13 +96,13 @@
                     <button type="button" class="btn btn-primary mb-3">Ver lista
                     </button>
                 </a>
-                {{-- @can('productos.create') --}}
+                @can('productos.create')
                 <div class="registrar">
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#comprasFormInput" onclick="createSelector('Input')">
                         Registrar Compra
                     </button>
                 </div>
-                {{-- @endcan --}}
+                @endcan
             </div>
         </div>
 
@@ -117,13 +117,13 @@
                     <button type="button" class="btn btn-primary mb-3">Ver lista
                     </button>
                 </a>
-                {{-- @can('productos.create') --}}
+                @can('productos.create')
                 <div class="registrar">
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ventasFormInput" onclick="createSelector('Input')">
                         Registrar Venta
                     </button>
                 </div>
-                {{-- @endcan --}}
+                @endcan
             </div>
         </div>
     </div>
@@ -135,21 +135,21 @@
 
 @endsection
 @section('body-final')
-{{-- @can('proveedores.create') --}}
+@can('proveedores.create')
 <x-forms.proveedores-input id="proveedoresFormInput" />
-{{-- @endcan --}}
-{{-- @can('productos.create') --}}
-{{-- <x-forms.compras-input id="comprasFormInput" /> --}}
-{{-- @endcan --}}
-{{-- @can('productos.create') --}}
+@endcan
+@can('productos.create')
+<x-forms.compras-input id="comprasFormInput" />
+@endcan
+@can('productos.create')
 <x-forms.ventas-input id="ventasFormInput" />
-{{-- @endcan --}}
-{{-- @can('productos.create') --}}
+@endcan
+@can('productos.create')
 <x-forms.productos-input id="productosFormInput" />
-{{-- @endcan --}}
-{{-- @can('categorias.create') --}}
+@endcan
+@can('categorias.create')
 <x-forms.categoria-input id="categoriaFormInput" />
-{{-- @endcan --}}
+@endcan
 @endsection
 
 @section('js-home')

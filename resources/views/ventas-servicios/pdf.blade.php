@@ -12,11 +12,11 @@
 <body>
     <div class="tabla" style="padding: 3rem;">
         <h1>Recibo</h1>
-        <strong>Cliente: {{ $solicitud->cliente->persona->nombre .
+        {{-- <strong>Cliente: {{ $solicitud->cliente->persona->nombre .
                                         ' ' .
                                         $solicitud->cliente->persona->apellido_paterno .
                                         ' ' .
-                                        $solicitud->cliente->persona->apellido_materno }}</strong>
+                                        $solicitud->cliente->persona->apellido_materno }}</strong> --}}
         <p>
             <strong>Tipo de servicio</strong>: @if ($solicitud->id_servicio)
             {{ $solicitud->servicio->nombre }}
@@ -25,11 +25,9 @@
             @endif
             <br>
             <strong>Mascota</strong>: {{$solicitud->mascota->nombre}} <br>
-            <strong>ID recibo</strong>: {{$solicitud->id_recibo}} <br>
-            <strong>Concepto</strong>: {{$solicitud->recibo->concepto}} <br>
-            <strong>Monto cancelado</strong>: {{$solicitud->recibo->monto_cancelado}} <br>
-            <strong>Saldo</strong>: {{$solicitud->recibo->saldo}} <br>
-            <strong>Monto total</strong>: {{$solicitud->recibo->monto_total}} <br>
+            <strong>ID recibo</strong>: {{$solicitud->id_venta}} <br>
+            <strong>Concepto</strong>: {{$solicitud->venta->concepto}} <br>
+            <strong>Monto total</strong>: {{$solicitud->venta->total}} <br>
         </p>
     </div>
 </body>
