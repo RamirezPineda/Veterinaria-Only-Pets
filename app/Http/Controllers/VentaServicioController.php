@@ -7,6 +7,7 @@ use App\Models\VentaServicio;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class VentaServicioController extends Controller
 {
@@ -30,6 +31,18 @@ class VentaServicioController extends Controller
         $solicitudes->load('mascota');
 
         return view('ventas-servicios.index', compact('solicitudes'));
+    }
+    
+        /**
+     * Display the specified resource.
+     */
+    public function show($id)
+    {
+        $solicitud = VentaServicio::findOrFail($id);
+        $solicitud->load('mascota');
+        $solicitud->load('servicio');
+        $solicitud->load('venta');
+        return view('ventas-servicios.show', compact('solicitud'));
     }
 
     /**
@@ -65,5 +78,15 @@ class VentaServicioController extends Controller
         return redirect(route('ventas-servicios.index'));
     }
 
+    public function pdf($id)
+    {
+        $solicitud = VentaServicio::findOrFail($id);
+        $solicitud->load('mascota');
+        $solicitud->load('servicio');
+        $solicitud->load('venta');
+        $solicitud->load('cliente');
+        $pdf = PDF::loadView('ventas-servicios.pdf',['solicitud'=>$solicitud]);
+        return $pdf->download('recibo.pdf');
+    }
 
 }
