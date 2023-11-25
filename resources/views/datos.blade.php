@@ -26,7 +26,7 @@
 
 
     <div class="row d-flex align-items-stretch justify-content-around pt-5  ">
-        {{-- @can('administrativos.index') --}}
+        @can('administrativos.index')
         <div class="col-3">
             <div class="card" style="height:100%;">
                 <img src="{{ asset('images/datos/administrativos.jpg') }}" class="card-img-top" alt="...">
@@ -43,9 +43,9 @@
                 </div>
             </div>
         </div>
-        {{-- @endcan --}}
+        @endcan
 
-        {{-- @can('mascotas.index') --}}
+        @can('mascotas.index')
         <div class="col-sm-6 col-lg-3 ">
             <div class="card" style="height:100%;">
                 <img src="{{ asset('images/datos/mascotas.jpg') }}" class="card-img-top" alt="...">
@@ -55,16 +55,16 @@
                         <button type="button" class="btn btn-primary mb-3" >Ver lista
                         </button>
                     </a>
-                    {{-- @can('mascotas.create') --}}
+                    @can('mascotas.create')
                         <button type="button" class="btn btn-success" data-bs-toggle="modal"
                         data-bs-target="#mascotasFormInput">Crear Mascotas</button>
-                    {{-- @endcan --}}
+                   @endcan
                 </div>
             </div>
         </div>
-        {{-- @endcan --}}
+        @endcan
 
-        {{-- @can('clientes.index') --}}
+        @can('clientes.index')
         <div class="col-sm-6 col-lg-3 ">
             <div class="card" style="height:100%;">
                 <img src="{{ asset('images/datos/clientes.jpg') }}" class="card-img-top img-fluid" alt="...">
@@ -74,17 +74,17 @@
                         <button type="button" class="btn btn-primary mb-3">Ver lista
                         </button>
                     </a>
-                    {{-- @can('clientes.create') --}}
+                    @can('clientes.create')
                     <button type="button" class="btn btn-success" data-bs-toggle="modal"
                         data-bs-target="#ClienteFormInput" onclick="createSelector('cliente')">Crear Cliente</button>
-                    {{-- @endcan --}}
+                    @endcan
                 </div>
             </div>
 
         </div>
-        {{-- @endcan --}}
+        @endcan
 
-        {{-- @can('veterinarios.index') --}}
+        @can('veterinarios.index')
         <div class="col-3">
             <div class="card" style="height:100%;">
                 <img src="{{ asset('images/datos/veterinarios.jpg') }}" class="card-img-top" alt="...">
@@ -93,14 +93,14 @@
                     <a href="{{ route('veterinarios.index') }}">
                         <button type="button" class="btn btn-primary mb-3">Ver lista</button>
                     </a>
-                    {{-- @can('veterinarios.create') --}}
+                    @can('veterinarios.create')
                     <button type="button" class="btn btn-success" data-bs-toggle="modal"
                         data-bs-target="#VeterinarioFormInput" onclick="createSelector('veterinario')">Crear Veterinario</button>
-                    {{-- @endcan --}}
+                    @endcan
                     </div>
         </div>
         </div>
-        {{-- @endcan --}}
+        @endcan
 
     </div>
    

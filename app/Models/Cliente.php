@@ -17,5 +17,10 @@ class Cliente extends Model
     {
         return $this->belongsTo(Persona::class, 'id');
     }
+
+    public function mascotas()
+    {
+        return $this->belongsToMany(Mascota::class, 'clientes_mascotas', 'id_cliente', 'id_mascota');
+    }
 }
 

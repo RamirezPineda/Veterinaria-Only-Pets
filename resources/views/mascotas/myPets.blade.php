@@ -64,7 +64,7 @@
             </table>
         </div>
         {{-- <div class="pagination" style="margin-top: 1rem;">
-    {{$mascotas->appends('busqueda=>$busqueda')}}
-  </div> --}}
+            {{ $mascotas->appends('busqueda=>$busqueda') }}
+        </div> --}}
     </div>
 @endsection

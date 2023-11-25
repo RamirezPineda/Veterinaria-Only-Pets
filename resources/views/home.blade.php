@@ -42,57 +42,57 @@
                 <h3>Inicio</h3>
             </a>
             
-            {{-- @can('usuarios.index') --}}
+            @can('usuarios.index')
                 <a href="{{ route('usuarios.index') }}" class=@yield('usuario', '')>
                     <span class="material-icons-sharp">person</span>
                     <h3>Usuario</h3>
                 </a>
-            {{-- @endcan --}}
+            @endcan
 
-            {{-- @canany(['administrativos.index', 'mascotas.index', 'clientes.index', 'veterinarios.index']) --}}
+            @canany(['administrativos.index', 'mascotas.index', 'clientes.index', 'veterinarios.index'])
                 <a href="{{ route('datos') }}" class=@yield('registrar-datos', '')>
                     <span class="material-icons-sharp">app_registration</span>
                     <h3>Datos</h3>
                 </a>
-            {{-- @endcanany --}}
+            @endcanany
 
-            {{-- @canany(['cirugias.index', 'enfermedades.index', 'vacunas.index', 'historiales.index']) --}}
+            @canany(['cirugias.index', 'enfermedades.index', 'vacunas.index', 'historiales.index'])
                 <a href="{{ route('historialClinico') }}" class=@yield('historial-clinico', '')>
                     <span class="material-icons-sharp">description</span>
                     <h3>Historial Clinico</h3>
                 </a>
-            {{-- @endcanany --}}
+            @endcanany
 
-            {{-- @canany(['servicios.index','cita-servicio.index','turnos.index']) --}}
+            @canany(['servicios.index','cita-servicio.index','turnos.index'])
                 <a href="{{ route('servicio') }}" class=@yield('servicio', '')>
                     <span class="material-icons-sharp">control_point</span>
                     <h3>Servicio</h3>
                 </a>
-            {{-- @endcanany --}}
+            @endcanany
                 
 
-            {{-- @canany(['proveedores.index','productos.index','categorias.index']) --}}
+            @canany(['proveedores.index','productos.index','categorias.index'])
             <a href="{{ route('petshop') }}" class=@yield('petshop', '')>
 
                 <span class="material-icons-sharp">shopping_cart</span>
                 <h3>Pet Shop</h3>
             </a>
-            {{-- @endcanany --}}
+            @endcanany
 
-            @can('roles.index')
+            {{-- @can('roles.index')
             <a href="{{route('roles.index')}}" class=@yield('roles', '')>
                 <span class="material-icons-sharp">group</span>
                 <h3>Roles y Permisos</h3>
             </a>
-            @endcan
+            @endcan --}}
 
-            {{-- @role('cliente')
+            @role('cliente')
             <a href="{{route('mascotas.my')}}" class=@yield('mis-mascotas', '')>
                 <span class="material-icons-sharp">pets</span>
                 <h3>Mis Mascotas</h3>
             </a>
             @endrole
-   --}}
+  
 
             <form action="{{ route('logout') }}" method="post">
                 @csrf
@@ -116,9 +116,9 @@
             </div>
             <div class="profile">
                 <div class="info">
-                    {{-- <strong>{{ Auth::user()->persona->nombre.' '.Auth::user()->persona->apellido_paterno.' '.Auth::user()->persona->apellido_materno}}</strong> --}}
+                    <strong>{{ Auth::user()->persona->nombre.' '.Auth::user()->persona->apellido_paterno.' '.Auth::user()->persona->apellido_materno}}</strong>
                     <br>
-                    {{-- <small class="text-muted" style="text-transform: capitalize"> {{ implode('-' , Auth::user()->roles->pluck('name')->toArray() ) }} </small> --}}
+                    <small class="text-muted" style="text-transform: capitalize"> {{ implode('-' , Auth::user()->roles->pluck('name')->toArray() ) }} </small>
                 </div> 
             </div>
         </div>

@@ -19,13 +19,13 @@
 
 <div class="crud">
     <div class="d-md-flex justify-content-md-between" style="margin-bottom: 1rem;">
-        {{-- @can('cita-servicio.create') --}}
+        @can('cita-servicio.create')
         <div class="registrar">
             <button href="" class="buttonRegistrame" data-bs-toggle="modal" data-bs-target="#solicitudesFormInput" onclick="createSelector('Input')">
                 Registrar <br>Solicitud De Servicio
             </button>
         </div>
-        {{-- @endcan --}}
+        @endcan
         <form action="{{ route('ventas-servicios.index') }}" method="GET">
             <div class="btn-group">
                 <input type=" text" name="busqueda" class="form-control">
@@ -80,9 +80,9 @@
 </div>
 @endsection
 @section('body-final')
-{{-- @can('cita-servicio.create') --}}
+@can('cita-servicio.create')
 <x-solicitudes-input id="solicitudesFormInput" />
-{{-- @endcan --}}
+@endcan
 @endsection
 
 @section('js-home')

@@ -16,14 +16,14 @@
 
 <div class="crud">
     <div class="d-md-flex justify-content-md-between" style="margin-bottom: 1rem;">
-        {{-- @can('proveedores.create') --}}
+        @can('proveedores.create')
         <div class="registrar">
             <button href="#" class="buttonRegistrame" data-bs-toggle="modal" data-bs-target="#categoriaFormInput"
                 onclick="createSelector('Input')">
                 Registrar categoria
             </button>
         </div>
-        {{-- @endcan --}}
+        @endcan
         <form action="{{ route('categorias.index') }}" method="GET">
             <div class="btn-group">
                 <input type=" text" name="busqueda" class="form-control">
@@ -47,14 +47,14 @@
                         <td>{{ $categoria->nombre }}</td>
                         <td>
                     <div class="d-flex flex-row justify-content-between">
-                        {{-- @can('categorias.edit') --}}
+                        @can('categorias.edit')
                         <button class="button-edit" onclick=@php  echo "\"desplegarForm(" . json_encode($categoria->id) . ")\""; @endphp data-bs-toggle="modal"
                             data-bs-target="#categoriaFormUpdate">
                             <span class="material-icons-sharp">
                                 edit
                             </span>
                         </button>
-                        {{-- @endcan --}}
+                        @endcan
                     </div>
                 </td>
                 @endforeach
@@ -68,12 +68,12 @@
 @endsection
 
 @section('body-final')
-    {{-- @can('categorias.create') --}}
+    @can('categorias.create')
     <x-forms.categoria-input id="categoriaFormInput" />
-    {{-- @endcan --}}
-    {{-- @can('categorias.edit') --}}
+    @endcan
+    @can('categorias.edit')
     <x-forms.categoria-update id="categoriaFormUpdate" />
-    {{-- @endcan --}}
+    @endcan
 
     @section('js-home')
     <script>

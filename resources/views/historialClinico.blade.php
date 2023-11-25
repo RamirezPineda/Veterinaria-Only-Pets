@@ -25,7 +25,7 @@
 
 
 <div class="row d-flex align-items-stretch pt-5  ">
-    {{-- @can('cirugias.index') --}}
+    @can('cirugias.index')
     <div class="col">
         <div class="card">
             <img src="{{ asset('images/historial-clinico/cirugia.jpg') }}" class="card-img-top" alt="...">
@@ -35,18 +35,18 @@
                     <a href="{{ route('cirugias.index') }}">
                         <button type="button" class="btn btn-primary mb-3">Ver lista</button>
                     </a>
-                    {{-- @can('cirugias.create') --}}
+                    @can('cirugias.create')
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#CirugiaFormInput" onclick="createSelector('cirugia','input')">
                         Crear Cirugia
                     </button>
-                    {{-- @endcan --}}
+                    @endcan
                 </div>
             </div>
         </div>
     </div>
-    {{-- @endcan --}}
+    @endcan
 
-    {{-- @can('enfermedades.index') --}}
+    @can('enfermedades.index')
     <div class="col">
         <div class="card">
             <img src="{{ asset('images/historial-clinico/enfermedad.jpg') }}" class="card-img-top" alt="...">
@@ -56,18 +56,17 @@
                     <button type="button" class="btn btn-primary mb-3">Ver lista
                     </button>
                 </a>
-                {{-- @can('enfermedades.create') --}}
+                @can('enfermedades.create')
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#EnfermedadFormInput" onclick="createSelector('enfermedad','input')">
                     Crear Enfermedad
                 </button>
-                {{-- @endcan --}}
+                @endcan
             </div>
         </div>
     </div>
-    {{-- @endcan --}}
+    @endcan
 
-
-    {{-- @can('vacunas.index') --}}
+    @can('vacunas.index')
     <div class="col">
         <div class="card">
             <img src="{{ asset('images/historial-clinico/vacuna.jpg') }}" class="card-img-top img-fluid" alt="...">
@@ -77,15 +76,15 @@
                     <button type="button" class="btn btn-primary mb-3">Ver lista
                     </button>
                 </a>
-                {{-- @can('vacunas.create') --}}
+                @can('vacunas.create')
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#input-vacuna">Crear Vacuna</button>
-                {{-- @endcan --}}
+                @endcan
             </div>
         </div>
     </div>
-    {{-- @endcan --}}
+    @endcan
 
-    {{-- @can('historiales.index') --}}
+    @can('historiales.index')
     <div class="col">
         <div class="card">
             <img src="{{ asset('images/historial-clinico/historialclinico.jpg') }}" class="card-img-top" alt="...">
@@ -97,7 +96,7 @@
             </div>
         </div>
     </div>
-    {{-- @endcan --}}
+    @endcan
 </div>
 
 

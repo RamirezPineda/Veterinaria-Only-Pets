@@ -32,11 +32,11 @@
                 <a href="{{ route('servicios.index') }}">
                     <button type="button" class="btn btn-primary mb-3">Ver lista</button>
                 </a>
-                {{-- @can('servicios.index') --}}
+                @can('servicios.index')
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ServicioFormInput" onclick="createSelector('servicio','input')">
                     Registrar Servicio
                 </button>
-                {{-- @endcan --}}
+                @endcan
             </div>
         </div>
     </div>
@@ -49,11 +49,11 @@
                     <button type="button" class="btn btn-primary mb-3">Ver lista
                     </button>
                 </a>
-                {{-- @can('ventas-servicios.index') --}}
+                @can('ventas-servicios.index')
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#solicitudesFormInput" onclick="createSelector('Input')">
                     Registrar Venta De Servicio
                 </button>
-                {{-- @endcan --}}
+                @endcan
             </div>
         </div>
     </div>
@@ -63,9 +63,9 @@
 
 @endsection
 @section('body-final')
-{{-- @can('servicios.create') --}}
+@can('servicios.create')
 <x-forms.input-datos-servicios id="ServicioFormInput" type="servicio" />
-{{-- @endcan --}}
+@endcan
 <x-solicitudes-input id="solicitudesFormInput" />
 @endsection
 
