@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('historiales_clinicos', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_mascota');
+            $table->integer('id')->autoIncrement();
+            $table->integer('id_mascota');
             $table->unsignedFloat('peso', 5, 3);
             $table->string('talla');
             $table->foreign('id_mascota')->references('id')->on('mascotas')->onDelete('cascade')->onUpdate('cascade');

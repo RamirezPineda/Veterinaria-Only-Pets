@@ -16,4 +16,20 @@ class Venta extends Model
         'id_administrativo',
         'id_cliente',
     ];
+
+    public static function ventaSinProductos()
+    {
+        return Venta::where('total', '=', '0')
+        ->where('concepto', 'producto')
+        ->first();
+    }
+
+    public static function ventaSinServicios()
+    {
+        return Venta::where('total', '=', '0')
+        ->where('concepto', 'servicio')
+        ->first();
+    }
+    
+
 }

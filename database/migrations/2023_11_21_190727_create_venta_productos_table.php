@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('venta_productos', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_venta');
-            $table->unsignedBigInteger('id_producto')->nullable();
-            $table->unsignedBigInteger('cantidad');
-            $table->unsignedBigInteger('monto');
+            $table->integer('id')->autoIncrement();
+            $table->integer('id_venta');
+            $table->integer('id_producto')->nullable();
+            $table->integer('cantidad');
+            $table->integer('monto');
             $table->foreign('id_venta')->references('id')->on('ventas');
             $table->foreign('id_producto')->references('id')->on('productos')->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();

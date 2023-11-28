@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mascotas', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre', '20');
-            $table->string('raza', '20');
+            $table->integer('id')->autoIncrement();
+            $table->string('nombre');
+            $table->string('raza');
             $table->date('fecha_nacimiento');
             $table->string('especie');
             $table->string('descripcion', '100');

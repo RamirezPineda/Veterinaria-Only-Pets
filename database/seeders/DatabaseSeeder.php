@@ -4,7 +4,17 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Cliente;
+use App\Models\ClienteMascota;
+use App\Models\DetalleEnfermedad;
+use App\Models\HistorialClinico;
+use App\Models\Mascota;
+use App\Models\Persona;
+use App\Models\Usuario;
+use App\Models\Venta;
 use App\Models\VentaProducto;
+use App\Models\VentaServicio;
+use GuzzleHttp\Client;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -46,6 +56,14 @@ class DatabaseSeeder extends Seeder
         $this->call(VentaSeeder::class);
         $this->call(VentaProductoSeeder::class);
         $this->call(VentaServicioSeeder::class);
+
+        Persona::factory(50)->create();
+        Usuario::factory(50)->create();
+        DetalleEnfermedad::factory(50)->create(); 
+        Venta::factory(150)->create();
+        Venta::factory(150)->customConcepto('servicio')->create();
+        VentaProducto::factory(300)->create();
+        VentaServicio::factory(300)->create();
 
     }
 }

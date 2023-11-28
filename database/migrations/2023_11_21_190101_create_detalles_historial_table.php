@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('detalles_historial', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id')->autoIncrement();
             $table->string('descripcion');
             $table->date('fecha_consulta');
             $table->date('fecha_prox_consulta')->nullable();
-            $table->unsignedBigInteger('id_historial');
+            $table->integer('id_historial');
             $table->foreign('id_historial')->references('id')->on('historiales_clinicos')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

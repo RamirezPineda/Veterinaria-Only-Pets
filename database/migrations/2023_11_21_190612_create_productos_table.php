@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('productos', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id')->autoIncrement();
             $table->string('nombre');
-            $table->string('descripcion',200);
+            $table->string('descripcion', 200);
             $table->string('foto')->nullable();
             $table->integer('costo');
             $table->integer('precio')->nullable();
             $table->string('marca')->nullable();
             $table->integer('cantidad');
-            $table->unsignedBigInteger('id_categoria')->nullable();
+            $table->integer('id_categoria')->nullable();
             $table->foreign('id_categoria')->references('id')->on('categorias')->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });

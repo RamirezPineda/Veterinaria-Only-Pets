@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('usuarios', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre_usuario','100');
+            $table->integer('id')->autoIncrement();
+            $table->string('nombre_usuario', '100');
             $table->string('password');
             $table->boolean('enable');
             $table->rememberToken();
-            $table->unsignedBigInteger('id_persona');
+            $table->integer('id_persona');
             $table->foreign('id_persona')->references('id')->on('personas')->onDelete('cascade')->onUpdate('cascade');
-           
+
             $table->timestamps();
         });
     }

@@ -12,14 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('detalles_enfermedades', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_enfermedad');
-            $table->unsignedBigInteger('id_historial');
+            $table->integer('id')->autoIncrement();
+            $table->integer('id_enfermedad');
+            $table->integer('id_historial');
             $table->date('fecha_deteccion');
             $table->date('inicio_tratamiento')->nullable();
             $table->date('fin_tratamiento')->nullable();
             $table->foreign('id_historial')->references('id')->on('historiales_clinicos')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_enfermedad')->references('id')->on('enfermedades')->onDelete('cascade')->onUpdate('cascade');
+            $table->unique(['id_enfermedad', 'id_historial']);
+            
             $table->timestamps();
         });
     }
