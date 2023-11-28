@@ -37,8 +37,8 @@
         </div>
         <div class="sidebar">
             <a href="/home" class=@yield('home', '')>
-                <span class="material-icons-sharp">DashBoard</span>
-                <h3>Inicio</h3>
+                <span class="material-icons-sharp">dashboard</span>
+                <h3>Dashboard</h3>
             </a>
             
             @can('usuarios.index')
