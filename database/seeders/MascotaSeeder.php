@@ -57,7 +57,7 @@ class MascotaSeeder extends Seeder
         ]);
         Mascota::create([
             'nombre' => 'Panquesito', 
-            'raza' => 'Pitubull', 
+            'raza' => 'Pitbull', 
             'fecha_nacimiento' => '2018-10-10', 
             'especie' => 'perro', 
             'descripcion' => 'color cafe con negro', 

@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('notas_ingresos', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_proveedor')->nullable();
-            $table->unsignedBigInteger('id_producto')->nullable();
-            $table->unsignedBigInteger('id_administrativo')->nullable();
+            $table->integer('id')->autoIncrement();
+            $table->integer('id_proveedor')->nullable();
+            $table->integer('id_producto')->nullable();
+            $table->integer('id_administrativo')->nullable();
             $table->integer('cantidad');
             $table->date('fecha');
             $table->time('hora');

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('administrativos', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id')->autoIncrement();
             $table->foreign('id')->references('id')->on('personas')->onDelete('cascade')->onUpdate('cascade');
             $table->string('profesion');
             $table->timestamps();

@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('detalles_cirugias', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_cirugia');
-            $table->unsignedBigInteger('id_historial');
+            $table->integer('id')->autoIncrement();
+            $table->integer('id_cirugia');
+            $table->integer('id_historial');
             $table->date('fecha');
             $table->time('hora');
             $table->string('veterinario_encargado');

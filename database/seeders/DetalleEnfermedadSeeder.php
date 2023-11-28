@@ -24,7 +24,14 @@ class DetalleEnfermedadSeeder extends Seeder
             'fin_tratamiento' => null, 
         ]);
         DetalleEnfermedad::create([
-            'id_enfermedad' => '18', 
+            'id_enfermedad' => '4', 
+            'id_historial' => '1', 
+            'fecha_deteccion' => '2022-03-15', 
+            'inicio_tratamiento' => '2022-03-15', 
+            'fin_tratamiento' => null, 
+        ]);
+        DetalleEnfermedad::create([
+            'id_enfermedad' => '2', 
             'id_historial' => '1', 
             'fecha_deteccion' => '2022-03-15', 
             'inicio_tratamiento' => '2022-03-15', 
@@ -32,14 +39,7 @@ class DetalleEnfermedadSeeder extends Seeder
         ]);
         DetalleEnfermedad::create([
             'id_enfermedad' => '18', 
-            'id_historial' => '1', 
-            'fecha_deteccion' => '2022-03-15', 
-            'inicio_tratamiento' => '2022-03-15', 
-            'fin_tratamiento' => null, 
-        ]);
-        DetalleEnfermedad::create([
-            'id_enfermedad' => '18', 
-            'id_historial' => '1', 
+            'id_historial' => '2', 
             'fecha_deteccion' => '2022-03-15', 
             'inicio_tratamiento' => '2022-03-15', 
             'fin_tratamiento' => '2022-04-30', 
@@ -89,6 +89,22 @@ class DetalleEnfermedadSeeder extends Seeder
         DetalleEnfermedad::create([
             'id_enfermedad' => '4', 
             'id_historial' => '5', 
+            'fecha_deteccion' => '2022-03-10', 
+            'inicio_tratamiento' => '2022-03-10', 
+            'fin_tratamiento' => '2022-03-10', 
+        ]);
+
+        DetalleEnfermedad::create([
+            'id_enfermedad' => '4', 
+            'id_historial' => '6', 
+            'fecha_deteccion' => '2022-03-10', 
+            'inicio_tratamiento' => '2022-03-10', 
+            'fin_tratamiento' => '2022-03-10', 
+        ]);
+
+        DetalleEnfermedad::create([
+            'id_enfermedad' => '18', 
+            'id_historial' => '6', 
             'fecha_deteccion' => '2022-03-10', 
             'inicio_tratamiento' => '2022-03-10', 
             'fin_tratamiento' => '2022-03-10', 

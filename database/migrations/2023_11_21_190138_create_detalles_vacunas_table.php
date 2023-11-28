@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('detalles_vacunas', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_vacuna');
-            $table->unsignedBigInteger('id_historial');
+            $table->integer('id')->autoIncrement();
+            $table->integer('id_vacuna');
+            $table->integer('id_historial');
             $table->integer('dosis');
             $table->date('fecha_aplicacion');
             $table->date('fecha_prox_aplicacion')->nullable();
