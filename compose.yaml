@@ -34,9 +34,7 @@ services:
     #   - laravel
 
   app-system:
-    build: 
-      context: . # carpeta donde esta el dockerfile
-      dockerfile: Dockerfile # nombre del dockerfile
+    image: ramirezpineda/sistema-principal
     container_name: veterinaria-system # nombre de referencia del servicio
     restart: always # si tiene algun problema, reinicialo
     ports:
