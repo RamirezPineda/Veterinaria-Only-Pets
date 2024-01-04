@@ -14,6 +14,11 @@
     <div class="row">
         <div class="tabla" style="padding: 3rem;">
             <h1>{{$mascota->nombre}}</h1>
+
+            @if ($mascota->foto)
+            <img src={{$mascota->foto}} alt={{$mascota->nombre}} style="width: 300px; height: auto; background-size: cover;">
+            @endif
+
             <p>
                 {{-- <strong>Peso</strong>: @if($mascota->peso)
                 {{$mascota->peso}}

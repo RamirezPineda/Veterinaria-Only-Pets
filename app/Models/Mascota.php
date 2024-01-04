@@ -17,6 +17,7 @@ class Mascota extends Model
         'especie',
         'descripcion',
         'sexo',
+        'foto',
     ];
 
 

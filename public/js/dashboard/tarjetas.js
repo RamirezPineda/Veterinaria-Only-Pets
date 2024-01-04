@@ -1,5 +1,5 @@
-urlBase = 'http://3.86.65.163:3000';
-//urlBase = 'http://127.0.0.1:3000';
+urlBase = 'http://64.23.130.119:8080';
+// urlBase = 'http://127.0.0.1:3000';
 
 var checkbox = document.querySelector("#opcion1");
 checkbox.checked = true;

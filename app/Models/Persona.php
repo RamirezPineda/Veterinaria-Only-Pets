@@ -20,6 +20,7 @@ class Persona extends Model
         'email',
         'fecha_de_nacimiento',
         'sexo',
+        'telefono'
     ];
 
     public function cliente()

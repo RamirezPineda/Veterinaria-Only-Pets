@@ -11,11 +11,13 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Psr7\Request as RequestGuzzle;
 use GuzzleHttp\Client;
 
+use Illuminate\Support\Facades\Response;
+
 
 class HomeController extends Controller
 {
-    //private $BASE_URL ="http://127.0.0.1:3000";
-    private $BASE_URL ="http://3.86.65.163:3000";
+    // private $BASE_URL ="http://127.0.0.1:3000";
+    private $BASE_URL ="http://64.23.130.119:8080";
  
     public function index()
     
@@ -29,7 +31,7 @@ class HomeController extends Controller
         $request = new RequestGuzzle('GET', $this->BASE_URL.'/api/getCantidadMascotasAtendidas');
         $res = $client->sendAsync($request)->wait();
         $mascotasAtendidasMesActual = json_decode($res->getBody());
-           //Log::info($ganancias->gananciaTodasLasVentas);
+        //    Log::info($ganancias->gananciaTodasLasVentas);
    
         $productos = Producto::all();
         $cantidadClientes = Cliente::count();
@@ -39,7 +41,15 @@ class HomeController extends Controller
         $ultimoDiaMesActual = Carbon::now()->endOfMonth();
         
 
-
+        // return view('home.index', compact('productos', 'cantidadClientes', 'cantidadMascotas'));
         return view('home.index', compact('productos', 'cantidadClientes', 'cantidadMascotas','mascotasAtendidasMesActual','ganancias'));
     }
+
+
+    public function uploadFile(Request $request)
+    {
+        $foto_url = cloudinary()->upload($request->file('foto')->getRealPath())->getSecurePath();
+        return Response::json(['foto_url' => $foto_url], 200);
+    }
+
 }

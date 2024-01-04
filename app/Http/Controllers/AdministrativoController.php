@@ -7,6 +7,8 @@ use App\Models\Persona;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Http;
+
 class AdministrativoController extends Controller
 {
     /**
@@ -57,6 +59,23 @@ class AdministrativoController extends Controller
             'enable'         => '1',
             'id_persona'     => $persona->id,
         ]);
+
+        try {
+            $data =  [ 
+                'id' => $persona->id,
+                'nombre' => $request->nombre,
+                'apellido_paterno' => $request->apellido_paterno,
+                'apellido_materno' => $request->apellido_materno,
+                'sexo' => $request->sexo,
+                'profesion' => $request->profesion,
+            ];
+
+            Http::post('http://localhost:3000/api/administrativos', $data);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
         
         return redirect()->route('administrativos.index');
     }

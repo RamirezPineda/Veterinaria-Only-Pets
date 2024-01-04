@@ -12,7 +12,7 @@ class ClienteMascota extends Model
     
     protected $table = 'clientes_mascotas';
 
-    protected $fillable  = [ 'id_cliente', 'id_mascota'];
+    protected $fillable  = [ 'id_cliente', 'id_mascota', 'fecha_registro'];
 
     public function mascota()
     {

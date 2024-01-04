@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->integer('id')->autoIncrement();
+            $table->string('contacto_emergencia')->nullable();
             $table->foreign('id')->references('id')->on('personas')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

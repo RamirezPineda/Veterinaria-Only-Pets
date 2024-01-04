@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('clientes_mascotas', function (Blueprint $table) {
             $table->integer('id_cliente');
             $table->integer('id_mascota');
+            $table->string('fecha_registro')->nullable();
             $table->foreign('id_mascota')->references('id')->on('mascotas');
             $table->foreign('id_cliente')->references('id')->on('clientes');
             $table->primary(['id_cliente', 'id_mascota']);

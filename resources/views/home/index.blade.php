@@ -371,8 +371,11 @@
 
 
 @section('contenido')
-    <div class="row">
 
+
+
+    <div class="row">
+        @if(auth()->user()->hasRole('super-admin'))
         <div class="col-3">
             <div class="card">
                 <div class="card-header bg-active text-white">
@@ -440,6 +443,7 @@
             </div>
         </div>
 
+
         <div class="col-3">
             <div class="card">
                 <div class="card-header bg-active text-white">
@@ -461,10 +465,21 @@
 
     </div>
 
-    <div style="height: 1600" ">
+    <div style="height: 1600">
         <div class="row mt-5 ">
+
+            {{-- <div class="col-6">
+                <div class=" p-0  border-danger border-2 rounded-top">
+                    <h1 class="bg-active text-white text-center rounded-top">Productos</h1>
+                    <div class="p-1 text-center">
+                        
+                    </div>
+                    <canvas id="myChart"></canvas>
+                </div>   
+            </div> --}}
+
             <div class=" col-7 ">
-                <div class=" p-0  border-danger border-2 border rounded-top">
+                <div class=" p-0  border-danger border-2  rounded-top">
                     <h1 class="bg-active text-white text-center rounded-top  ">Cantidad de Ventas Y Ganancias Totales</h1>
                     <div class="p-1 text-center">
                         <button id="btnDia" class="btn bg-active ">dia</button>
@@ -477,7 +492,7 @@
             </div>
     
             <div class=" col-5 ">
-                <div class=" p-0  border-danger border-2 border rounded-top">
+                <div class=" p-0  border-danger border-2  rounded-top">
                     <h1 class="bg-active text-white text-center rounded-top  ">Productos vs Servicios </h1>
     
                     <div id="grafico2"></div>
@@ -487,7 +502,7 @@
     
         <div class="row mt-5 ">
             <div class=" col-6 ">
-                <div class=" p-0  border-danger border-2 border rounded-top">
+                <div class=" p-0  border-danger border-2 rounded-top">
                     <h1 class="bg-active text-white text-center rounded-top  ">Ventas Por Productos </h1>
                     <div class="p-1 text-center">
                         <button id="botonColumnaGrafico3" class="btn bg-active">columna</button>
@@ -499,7 +514,7 @@
             </div>
     
             <div class=" col-6 ">
-                <div class="p-0  border-danger border-2 border rounded-top">
+                <div class="p-0  border-danger border-2 rounded-top">
                     <h1 class="bg-active text-center text-white rounded-top">Ventas Por Servicios</h1>
                     <div class="p-1 text-center">
                         <button id="botonColumnaGrafico4" class="btn bg-active">columna</button>
@@ -513,13 +528,13 @@
     
         <div class="row mt-5 ">
             <div class=" col-6 ">
-                <div class=" p-0  border-danger border-2 border rounded-top">
+                <div class=" p-0  border-danger border-2 rounded-top">
                     <h1 class="bg-active text-white text-center rounded-top  ">Enfermedades Por Raza </h1>
                     <div id="grafico5"></div>
                 </div>
             </div>
             <div class=" col-6 ">
-                <div class=" p-0  border-danger border-2 border rounded-top">
+                <div class=" p-0  border-danger border-2 rounded-top">
                     <h1 class="bg-active text-white text-center rounded-top  ">Servicios Por Raza </h1>
                     <div id="grafico6"></div>
                 </div>
@@ -528,6 +543,8 @@
            
         </div>
     
+        @endif
+
         <!-- PERRO ANIMACION -->
         <svg class="sausage-dog-animation" xmlns="http://www.w3.org/2000/svg" viewBox="-50 0 1200 1080">
             <ellipse class="shadow" ry="45" rx="350" cy="816" cx="498" opacity="1" fill="#B2CAE8"
@@ -672,6 +689,36 @@
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
+{{-- CDN Chart.js --}}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1,
+      },
+      {
+        label: '# of Participans',
+        data: [7, 11, 5, 3, 22, 10],
+        borderWidth: 1,
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
  
     <script src="{{ asset('js/dashboard/tarjetas.js') }}"></script>
     <script src="{{ asset('js/dashboard/grafico1.js') }}"></script>
@@ -681,8 +728,5 @@
     <script src="{{ asset('js/dashboard/grafico5.js') }}"></script>
     <script src="{{ asset('js/dashboard/grafico6.js') }}"></script>
   
-
-
-    
 
 @endsection

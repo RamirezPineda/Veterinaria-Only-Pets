@@ -36,10 +36,13 @@
             </div>
         </div>
         <div class="sidebar">
+
+            @if(auth()->user()->hasRole('super-admin'))
             <a href="/home" class=@yield('home', '')>
                 <span class="material-icons-sharp">dashboard</span>
                 <h3>Dashboard</h3>
             </a>
+            @endif
             
             @can('usuarios.index')
                 <a href="{{ route('usuarios.index') }}" class=@yield('usuario', '')>

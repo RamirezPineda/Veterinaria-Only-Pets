@@ -35,11 +35,11 @@
                             <div class="col-md-6 mt-2">
                                 <label for="id_producto" class="form-label fs-5">Producto</label>
                                 <select class=" form-control" id="id_producto"
-                                    name="id_producto" required>
+                                    name="id_producto" required onchange="multiplicar2();">
                                     
                                     @foreach ($productos as $producto)
                                     <option value="{{ $producto->id }},{{$producto->costo}}">
-                                        {{ $producto->nombre }}
+                                        {{ $producto->nombre }} - Costo: {{ $producto->costo  }} Bs
                                     </option>
                                     @endforeach
                                 </select>
@@ -49,6 +49,11 @@
                                 <label for="cantidad" class="form-label fs-5">Cantidad</label>
                                 <input type="number" class="form-control" id="cantidad" name="cantidad" required min="1" onchange="multiplicar();">
                                 {!! $errors->first('cantidad', '<span class="help-block text-danger">*:message</span>') !!}
+                            </div>
+                            <div class="col-md-6 mt-2">
+                                <label for="costo" class="form-label fs-5">Costo</label>
+                                <input type="number" class="form-control" id="costo" name="costo" required min="1" onchange="multiplicar();" >
+                                {!! $errors->first('costo', '<span class="help-block text-danger">*:message</span>') !!}
                             </div>
 
                             <div class="col-md-6 mt-2">
@@ -76,15 +81,15 @@
 <script>
 
     function getCantidad() {
-        var cantidad = document.getElementById("cantidad").value; 
+        let cantidad = document.getElementById("cantidad").value; 
         cantidad = (cantidad == null || cantidad == undefined || cantidad == "") ? 0: cantidad;
         return cantidad;
     }
 
     function getCosto() {
-        var cantidad = document.getElementById("id_producto").value; 
+        let cantidad = document.getElementById("id_producto").value; 
         cantidad = (cantidad == null || cantidad == undefined || cantidad == "") ? 0: cantidad;
-        var inicio = cantidad.indexOf(',');
+        const inicio = cantidad.indexOf(',');
         cantidad = cantidad.substring(inicio +1, cantidad.length);
         cantidad = parseInt(cantidad);
         return cantidad;
@@ -94,17 +99,59 @@
     function multiplicar () {
     //console.log(getCantidad());
     //console.log(getCosto());
-    var total = 0;	
+    let total = 0;	
     total = document.getElementById('monto_total').innerHTML;
 	
     // Aquí valido si hay un valor previo, si no hay datos, le pongo un cero "0".
     total = (total == null || total == undefined || total == "") ? 0 : total;
 	
     /* Esta es la multiplicacion. */
-    total = ( getCosto() * getCantidad());
+    const costoInput = document.getElementById("costo")
+
+
+    if (costoInput.value == null || costoInput.value == undefined || costoInput.value == "") {
+        costoInput.value = getCosto();
+    }
+
+
+    total = ( costoInput.value * getCantidad());
 	
     // Colocar el resultado en monto_total.
     document.getElementById('monto_total').innerHTML = total;
     document.getElementById("monto_total").value = total;
+
+    // const costoInput = document.getElementById("costo")
+    // costoInput.value = getCosto();
+
     }
+
+
+    function multiplicar2 () {
+        let total = 0;	
+        total = document.getElementById('monto_total').innerHTML;
+        
+        // Aquí valido si hay un valor previo, si no hay datos, le pongo un cero "0".
+        total = (total == null || total == undefined || total == "") ? 0 : total;
+        
+        /* Esta es la multiplicacion. */
+        const costoInput = document.getElementById("costo")
+
+        if (costoInput.value == null || costoInput.value == undefined || costoInput.value == "") {
+            costoInput.value = getCosto();
+        }
+
+        if (getCosto() != costoInput.value) {
+            costoInput.value = getCosto();
+        }
+
+        console.log(costoInput.value)
+
+        total = ( costoInput.value * getCantidad());
+
+        // Colocar el resultado en monto_total.
+        document.getElementById('monto_total').innerHTML = total;
+        document.getElementById("monto_total").value = total;
+    }
+
+
 </script>

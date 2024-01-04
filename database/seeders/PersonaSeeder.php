@@ -24,6 +24,7 @@ class PersonaSeeder extends Seeder
             'email'=> 'torrez-juan@gmail.com', 
             'fecha_de_nacimiento' => '1999-05-23', 
             'sexo' => 'M',
+            'telefono' => '62269122'
         ]);
         Persona::create([
             'nombre' => 'Maria', 
@@ -34,6 +35,7 @@ class PersonaSeeder extends Seeder
             'email'=> 'maria.molina@gmail.com', 
             'fecha_de_nacimiento' => '1989-12-25', 
             'sexo' => 'F',
+            'telefono' => '62269111'
         ]);
         Persona::create([
             'nombre' => 'Sofia', 
@@ -41,9 +43,10 @@ class PersonaSeeder extends Seeder
             'apellido_materno' => 'Peres', 
             'ci' => '13836993', 
             'direccion' => 'Los Lotes', 
-            'email'=> 'Martines.sofia11@gmail.com', 
+            'email'=> 'martines.sofia11@gmail.com', 
             'fecha_de_nacimiento' => '1998-04-03', 
             'sexo' => 'F',
+            'telefono' => '78269102'
         ]);
         Persona::create([
             'nombre' => 'Carlos Luis', 
@@ -54,6 +57,7 @@ class PersonaSeeder extends Seeder
             'email'=> 'luisgg24@gmail.com', 
             'fecha_de_nacimiento' => '1999-07-19', 
             'sexo' => 'M',
+            'telefono' => '72559122'
         ]);
         Persona::create([
             'nombre' => 'Jose', 
@@ -64,6 +68,7 @@ class PersonaSeeder extends Seeder
             'email'=> 'gomes-josue@gmail.com', 
             'fecha_de_nacimiento' => '2000-01-08', 
             'sexo' => 'M',
+            'telefono' => '67759122'
         ]);
         Persona::create([
             'nombre' => 'Andres', 
@@ -74,6 +79,7 @@ class PersonaSeeder extends Seeder
             'email'=> 'andres_andres@gmail.com', 
             'fecha_de_nacimiento' => '1997-07-08', 
             'sexo' => 'M',
+            'telefono' => '62260199'
         ]);
         Persona::create([
             'nombre' => 'Lucia', 
@@ -84,6 +90,7 @@ class PersonaSeeder extends Seeder
             'email'=> 'garcia_luci@gmail.com', 
             'fecha_de_nacimiento' => '1994-04-29', 
             'sexo' => 'F',
+            'telefono' => '62261139'
         ]);
         Persona::create([
             'nombre' => 'Jhon', 
@@ -94,6 +101,7 @@ class PersonaSeeder extends Seeder
             'email'=> 'molinajhom@gmail.com', 
             'fecha_de_nacimiento' => '2001-08-11', 
             'sexo' => 'M',
+            'telefono' => '78269101'
         ]);
         Persona::create([
             'nombre' => 'Luis Alberto', 
@@ -104,6 +112,7 @@ class PersonaSeeder extends Seeder
             'email'=> 'luis_gp@gmail.com', 
             'fecha_de_nacimiento' => '1991-09-25', 
             'sexo' => 'M',
+            'telefono' => '62009122'
         ]);
         Persona::create([
             'nombre' => 'Enrrique', 
@@ -114,6 +123,7 @@ class PersonaSeeder extends Seeder
             'email'=> 'lopez_enriquee@gmail.com', 
             'fecha_de_nacimiento' => '1989-01-10', 
             'sexo' => 'M',
+            'telefono' => '62214522'
         ]);
         Persona::create([
             'nombre' => 'Santiago', 
@@ -124,6 +134,7 @@ class PersonaSeeder extends Seeder
             'email'=> 'burguoa-esquivel@gmail.com', 
             'fecha_de_nacimiento' => '2002-02-02', 
             'sexo' => 'M',
+            'telefono' => '62264987'
         ]);     
         Persona::create([
             'nombre' => 'Ricardo', 
@@ -134,6 +145,7 @@ class PersonaSeeder extends Seeder
             'email'=> 'guzman.pedraza@gmail.com', 
             'fecha_de_nacimiento' => '1999-09-09', 
             'sexo' => 'M',
+            'telefono' => '63219122'
         ]);  
         Persona::create([
             'nombre' => 'Marcelo', 
@@ -144,6 +156,7 @@ class PersonaSeeder extends Seeder
             'email'=> 'marcelo_perez24@gmail.com', 
             'fecha_de_nacimiento' => '1994-04-17', 
             'sexo' => 'M',
+            'telefono' => '77969122'
         ]); 
         Persona::create([
             'nombre' => 'Felipe', 
@@ -154,6 +167,7 @@ class PersonaSeeder extends Seeder
             'email'=> 'felize.1514@gmail.com', 
             'fecha_de_nacimiento' => '1995-11-11', 
             'sexo' => 'M',
+            'telefono' => '62174122'
         ]); 
         Persona::create([
             'nombre' => 'Angela', 
@@ -164,6 +178,7 @@ class PersonaSeeder extends Seeder
             'email'=> 'escobar_angela@gmail.com', 
             'fecha_de_nacimiento' => '1992-03-05', 
             'sexo' => 'F',
+            'telefono' => '74129122'
         ]);  
        /*  Persona::create([
             'nombre' => 'Pamela', 

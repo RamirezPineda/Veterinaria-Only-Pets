@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Response;
+
+use Illuminate\Support\Facades\Http;
+
 class ServicioController extends Controller
 {
     /**
@@ -38,11 +42,24 @@ class ServicioController extends Controller
      */
     public function store(Request $request)
     {
-        Servicio::create([
+        $servicio = Servicio::create([
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
             'precio' => $request->precio
         ]);
+
+        try {
+            $data =  [ 
+                'id' => $servicio->id,
+                'nombre' => $request->nombre,
+                'descripcion' => $request->descripcion,
+            ];
+
+            Http::post('http://localhost:3000/api/servicios', $data);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
 
         return redirect(route('servicios.index'));
     }
@@ -78,6 +95,14 @@ class ServicioController extends Controller
         $servicio->update($data);
 
         return redirect()->route('servicios.index');
+    }
+
+
+    public function getAllServices() 
+    {
+        $servicios = Servicio::all();
+
+        return Response::json(['services' => $servicios], 200);
     }
 
 }

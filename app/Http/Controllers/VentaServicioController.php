@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
 
+
+use Illuminate\Support\Facades\Http;
+
 class VentaServicioController extends Controller
 {
     /**
@@ -59,12 +62,16 @@ class VentaServicioController extends Controller
             'id_cliente' => $request->id_cliente,
             // 'id_administrativo' => Auth::user()->id,
         ]);
+
+        $cantidad = 0;
+
         if (is_null($request->servicios)) {
             VentaServicio::create([
                 'id_servicio' => null,
                 'id_venta' => $venta->id,
                 'id_mascota' => $request->id_mascota,
             ]);
+            $cantidad += 1;
         } else {
             foreach ($request->servicios as $servicio) {
                 VentaServicio::create([
@@ -72,7 +79,28 @@ class VentaServicioController extends Controller
                     'id_venta' => $venta->id,
                     'id_mascota' => $request->id_mascota,
                 ]);
+                $cantidad += 1;
             }
+        }
+
+        try {
+
+            $data =  [ 
+                'id' => $venta->id + 10,
+                'administrativo_id' => Auth::user()->id,
+                'servicio_id' => $request->servicios[0],
+                'cliente_id' => $request->id_cliente,
+                'mascota_id' => $request->id_mascota,
+                'concepto' => 'servicio',
+                'cantidad' => $cantidad,
+                'precio_total' => $request->total,
+            ];
+
+            Http::post('http://localhost:3000/api/facturas', $data);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            // echo "ocurrio un error";
         }
 
         return redirect(route('ventas-servicios.index'));

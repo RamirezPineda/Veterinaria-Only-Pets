@@ -5,6 +5,10 @@ use Illuminate\Support\ServiceProvider;
 
 return [
 
+    'config' => [
+        // 'CLOUDINARY_URL' => env('CLOUDINARY_URL', 'db_name'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

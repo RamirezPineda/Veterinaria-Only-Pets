@@ -43,7 +43,7 @@
                         <div class="col-md-12">
                             <label for="servicios" class="form-label fs-5">Servicios</label>
                             <select class=" form-control" id="servicios"
-                                name="servicios[]" name="servicios" multiple="multiple" required>
+                                name="servicios[]" name="servicios" multiple="multiple" required onchange="calcularMontoTotal();">
                                 <option  value="">Ninguno</option>
                                 @foreach ($servicios() as $servicio)
                                 <option value="{{ $servicio->id }}">
@@ -77,3 +77,41 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    console.log('holaaa')
+    let services = []
+    fetch("/services-all")
+        .then(response => {
+            if (!response.ok) {
+                console.log('ocurrio un errorrrrr')
+                throw new Error('Error en la solicitud a la API');
+                // return response.json();
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data)
+            services = data.services;
+        }).catch(error => console.log(error));
+
+    function calcularMontoTotal() {
+        let total = 0;
+        const servicios = document.getElementById("servicios");
+        const serviciosSeleccionados = servicios.selectedOptions;
+
+        for (let i = 0; i < serviciosSeleccionados.length; i++) {
+            services.forEach(element => {
+                if (element.id == serviciosSeleccionados[i].value) {
+                    total = element.precio + total;
+                }
+            });
+
+            // total += parseInt(serviciosSeleccionados[i].value);
+
+        }
+        document.getElementById("total").value = total;
+    }
+
+</script>

@@ -9,6 +9,8 @@ use App\Models\Mascota;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Http;
+
 class MascotaController extends Controller
 {
     /**
@@ -54,6 +56,7 @@ class MascotaController extends Controller
             'raza' => $request->raza,
             'sexo' => $request->sexo,
             'descripcion' => $request->descripcion,
+            'foto' => $request->foto_url,
         ]);
 
         foreach ($request->duenhos as $duenho) {
@@ -68,6 +71,21 @@ class MascotaController extends Controller
             'peso' => $request->peso ? $request->peso : 15.4,
             'talla' => $request->talla ? $request->talla : "5",
         ]);
+
+        try {
+            $data =  [ 
+                'id' => $mascota->id,
+                'raza' => $request->nombre,
+                'especie' => $request->especie,
+                'descripcion' => $request->descripcion,
+                'fecha_nacimiento' => $request->fecha_de_nacimiento,
+            ];
+
+            Http::post('http://localhost:3000/api/mascotas', $data);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
 
         return redirect()->route('mascotas.index');
     }

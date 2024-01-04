@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('raza');
             $table->date('fecha_nacimiento');
             $table->string('especie');
-            $table->string('descripcion', '100');
+            $table->string('descripcion');
+            $table->string('foto')->nullable(); 
             $table->enum('sexo', ['Macho', 'Hembra']);
             $table->timestamps();
         });

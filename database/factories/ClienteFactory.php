@@ -19,6 +19,7 @@ class ClienteFactory extends Factory
 
         return [
             'id' => $idPersona++,
+            'contacto_emergencia' => $this->faker->numerify('7#######'), // generará un número aleatorio de 8 dígitos
         ];
     }
 }

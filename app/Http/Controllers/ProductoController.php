@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\NotaIngreso;
 use App\Models\Producto;
 use App\Models\Venta;
 use App\Models\VentaProducto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\Http;
 
 class ProductoController extends Controller
 {
@@ -35,7 +38,7 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         $foto_url = cloudinary()->upload($request->file('foto')->getRealPath())->getSecurePath();
-        Producto::create([
+        $producto = Producto::create([
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
             'costo' => $request->costo,
@@ -45,6 +48,25 @@ class ProductoController extends Controller
             'id_categoria' => $request->id_categoria,
             'foto' => $foto_url,
         ]);
+
+        try {
+            $categoria = Categoria::find($request->id_categoria);
+
+
+            $data =  [ 
+                'id' => $producto->id,
+                'nombre' => $request->nombre,
+                'marca' => $request->marca,
+                'descripcion' => $request->descripcion,
+                'categoria' => $categoria->nombre,
+            ];
+
+            Http::post('http://localhost:3000/api/productos', $data);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
         return redirect(route('productos.index'));
     }
 
@@ -85,6 +107,19 @@ class ProductoController extends Controller
     {
         $fin = strpos($request->id_producto, ',');
         $id_producto = substr($request->id_producto, 0, $fin);
+
+
+        $prod = Producto::find($id_producto);
+        $prod->costo = $request->costo;
+
+        $iva = 0.13;
+        $utilidad = 0.25; # utilidad ganada por cada producto vendido
+        $precioCosto = $request->costo  - ($request->costo * $iva);
+        $precioVenta = $precioCosto / (1 - $utilidad);
+
+        $prod->precio = intval($precioVenta / (1 - $iva) );
+        $prod->save();
+
         NotaIngreso::create([
             'id_proveedor' => $request->id_proveedor,
             'id_administrativo' => @Auth::user()->id,

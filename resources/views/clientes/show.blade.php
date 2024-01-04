@@ -29,6 +29,8 @@
                 {{$cliente->persona->direccion}}
                 @else
                 ---
+                @endif <br>
+                
                 <strong>Fecha de nacimiento</strong>: @if($cliente->persona->fecha_de_nacimiento)
                 {{$cliente->persona->fecha_de_nacimiento}}
                 @else

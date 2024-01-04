@@ -40,6 +40,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::post('/upload-file', [HomeController::class, 'uploadFile']);
+
+Route::get('/services-all', [ServicioController::class, 'getAllServices']);
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

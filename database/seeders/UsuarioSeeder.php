@@ -26,98 +26,98 @@ class UsuarioSeeder extends Seeder
         ])->assignRole('super-admin');
 
         Usuario::create([
-            'nombre_usuario' => 'maria', 
+            'nombre_usuario' => 'maria.molina@gmail.com', 
             'password' => $password, 
             'enable' => '1', 
             'id_persona' => '2', 
         ])->assignRole('veterinario');
 
         Usuario::create([
-            'nombre_usuario' => 'sofia', 
+            'nombre_usuario' => 'martines.sofia11@gmail.com', 
             'password' => $password, 
             'enable' => '1', 
             'id_persona' => '3', 
         ])->assignRole('recepcionista');
 
         Usuario::create([
-            'nombre_usuario' => 'gonzales', 
+            'nombre_usuario' => 'luisgg24@gmail.com', 
             'password' => $password, 
             'enable' => '1', 
             'id_persona' => '4', 
         ])->assignRole('recepcionista');
 
         Usuario::create([
-            'nombre_usuario' => 'josue', 
+            'nombre_usuario' => 'gomes-josue@gmail.com', 
             'password' => $password, 
             'enable' => '1', 
             'id_persona' => '5', 
         ])->assignRole('recepcionista');
 
         Usuario::create([
-            'nombre_usuario' => 'andresF', 
+            'nombre_usuario' => 'andres_andres@gmail.com', 
             'password' => $password, 
             'enable' => '1',  
             'id_persona' => '6', 
         ])->assignRole('veterinario');
 
         Usuario::create([
-            'nombre_usuario' => 'luci', 
+            'nombre_usuario' => 'garcia_luci@gmail.com', 
             'password' => $password, 
             'enable' => '1',  
             'id_persona' => '7', 
         ])->assignRole('veterinario');
 
         Usuario::create([
-            'nombre_usuario' => 'molina', 
+            'nombre_usuario' => 'molinajhom@gmail.com', 
             'password' => $password, 
             'enable' => '1',  
             'id_persona' => '8', 
         ])->assignRole('veterinario');
 
         Usuario::create([
-            'nombre_usuario' => 'luis', 
+            'nombre_usuario' => 'luis_gp@gmail.com', 
             'password' => $password, 
             'enable' => '1', 
             'id_persona' => '9', 
         ])->assignRole('cliente');
 
         Usuario::create([
-            'nombre_usuario' => 'enrique', 
+            'nombre_usuario' => 'lopez_enriquee@gmail.com', 
             'password' => $password, 
             'enable' => '1', 
             'id_persona' => '10', 
         ])->assignRole('cliente');
 
         Usuario::create([
-            'nombre_usuario' => 'santiago EB', 
+            'nombre_usuario' => 'burguoa-esquivel@gmail.com', 
             'password' => $password, 
             'enable' => '1', 
             'id_persona' => '11', 
         ])->assignRole('cliente');
 
         Usuario::create([
-            'nombre_usuario' => 'guzman pedraza', 
+            'nombre_usuario' => 'guzman.pedraza@gmail.com', 
             'password' => $password, 
             'enable' => '1', 
             'id_persona' => '12', 
         ])->assignRole('cliente');
 
         Usuario::create([
-            'nombre_usuario' => 'marcelo', 
+            'nombre_usuario' => 'marcelo_perez24@gmail.com', 
             'password' => $password, 
             'enable' => '1', 
             'id_persona' => '13', 
         ])->assignRole('cliente');
 
         Usuario::create([
-            'nombre_usuario' => 'felipe', 
+            'nombre_usuario' => 'felize.1514@gmail.com', 
             'password' => $password, 
             'enable' => '1', 
             'id_persona' => '14', 
         ])->assignRole('veterinario');
 
         Usuario::create([
-            'nombre_usuario' => 'angela', 
+            'nombre_usuario' => 'escobar_angela@gmail.com', 
             'password' => $password, 
             'enable' => '1', 
             'id_persona' => '15', 

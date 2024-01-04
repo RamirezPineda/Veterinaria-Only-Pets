@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email','40');
             $table->date('fecha_de_nacimiento')->nullable();
             $table->enum('sexo', ['M', 'F'])->nullable();
+            $table->string('telefono')->nullable();
             $table->timestamps();
         });
     }

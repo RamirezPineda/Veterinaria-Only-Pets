@@ -1,0 +1,62 @@
+version: '3.8'
+networks:
+  laravel:
+    driver: bridge
+
+services:
+  # nginx:
+  #   image: nginx:1.25.3-alpine # imagen de nginx
+  #   ports:
+  #     - 80:80
+  #   volumes:
+  #     # - ./src:/var/www/html # carpeta local/ vincula a carpeta de nginx
+  #     - ./nginx/default.conf:/etc/nginx/conf.d/default.conf # archivo local / reflejado en archivo de la imagen
+  #   depends_on:
+  #     - veterinaria-system # nombre del container_name del cual depende
+  #   networks:
+  #     - laravel
+
+  mysql:
+    image: mysql:8.0 # imagen de mysql
+    container_name: mysql-service # nombre de referencia del servicio
+    restart: always # si tiene algun problema, reinicialo
+    tty: true # permite ver los logs
+    ports:
+      - 3306:3306 # puerto local:puerto del servicio
+    # volumes:
+      # - ./mysql:/var/lib/mysql # carpeta local:carpeta de config de mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 'roypassword' # importante que tengan comillas
+      MYSQL_DATABASE: 'db_veterinaria'
+      MYSQL_USER: 'royuser'
+      MYSQL_PASSWORD: 'roypassword'
+    # networks:
+    #   - laravel
+
+  app-system:
+    build: 
+      context: . # carpeta donde esta el dockerfile
+      dockerfile: Dockerfile # nombre del dockerfile
+    container_name: veterinaria-system # nombre de referencia del servicio
+    restart: always # si tiene algun problema, reinicialo
+    ports:
+      - 8080:80
+    environment:
+      DB_CONNECTION: 'mysql'
+      DB_HOST: 'mysql' # nombre del servicio
+      DB_PORT: '3306'
+      DB_DATABASE: 'db_veterinaria'
+      DB_USERNAME: 'root'
+      DB_PASSWORD: 'roypassword'
+    # working_dir: /var/www/html # carpeta de trabajo
+    # volumes:
+      # - .:/var/www/html # carpeta local/ vincula a carpeta de nginx
+    depends_on:
+      # mysql: # nombre del servicio
+        # condition: service_healthy # condicion para que se ejecute
+      - mysql # nombre del servicio
+    links:
+      - mysql
+    # networks:
+    #   - laravel
+    # command: ["dockerize", "-wait", "tcp://mysql:3307", "-timeout", "60s", "php", "artisan", "migrate:fresh", "--seed"]

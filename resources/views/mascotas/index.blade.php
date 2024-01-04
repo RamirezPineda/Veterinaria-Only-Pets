@@ -59,7 +59,7 @@
           <td>{{$mascota->especie}}</td>
           <td>{{$mascota->raza}}</td>
           <td>{{$mascota->sexo}}</td>
-          <td>{{$mascota->propietario[0]->nombre.' '.$mascota->propietario[0]->apellido_paterno.' '.$mascota->propietario[0]->apellido_materno}}</td>
+          <td>{{ $mascota->propietario[0]->nombre.' '.$mascota->propietario[0]->apellido_paterno.' '.$mascota->propietario[0]->apellido_materno  }}</td>
           <td>
             <div class="d-flex flex-row justify-content-between">
               @can('mascotas.edit')

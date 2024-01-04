@@ -64,7 +64,7 @@ class Show extends Component
 
     public function guardarDiagnostico(){
 
-        // throw new Exception("Error Processing Request ".$this->id_enfermedad. "holaa", 1);
+        // throw new Exception("Error Processing Request ".$this->fecha_inicio_enfermedad. "holaa", 1);
 
         DB::beginTransaction();
         try {

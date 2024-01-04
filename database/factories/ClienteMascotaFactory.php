@@ -29,6 +29,7 @@ class ClienteMascotaFactory extends Factory
             'id_mascota'  => function () {
                 return Mascota::factory()->create()->id;
             },
+            'fecha_registro' => $this->faker->date(),
         ];
    
     }
